@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kaisn.dao.IEmployeeDao">
 
-   <select id="getEmployeeList" parameterType="java.util.Map" resultType="com.kaisn.pojo.Employee">
+   <select id="getEmployeeList" parameterType="com.kaisn.pojo.Employee" resultType="com.kaisn.pojo.Employee">
         SELECT
             t.emp_id,
             t.emp_name,
@@ -20,6 +20,18 @@
         </where>
         LIMIT #{offset},#{rows}
    </select>
+
+    <select id="getEmployeeListCount" parameterType="com.kaisn.pojo.Employee" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM
+        t_employee t
+        <where>
+            <if test="empName != null ">
+                t.emp_name = #{empName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 
     <insert id="addEmployee" parameterType="com.kaisn.pojo.Employee">
         INSERT INTO

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IEmployeeDao {
 
-    List<Employee> getEmployeeList(HashMap<String, Object> param);
+    List<Employee> getEmployeeList(Employee param);
 
     int addEmployee(Employee employee);
 
@@ -16,4 +16,6 @@ public interface IEmployeeDao {
     Employee getEmployee(Employee employee);
 
     int updEmployee(Employee employee);
+
+    int getEmployeeListCount(Employee employee);
 }

@@ -37,11 +37,9 @@ public class EmployeeController {
             String limit = request.getParameter("limit");
             Employee employee = new Employee();
             employee.setEmpName(empName);
-            HashMap<String, Object> param = new HashMap<String, Object>();
-            param.put("empName",empName);
-            param.put("offset",Integer.parseInt(page)-1);
-            param.put("rows",Integer.parseInt(limit));
-            employeeList = iEmployeeService.getEmployeeList(param);
+            employee.setOffset(Integer.parseInt(page)-1);
+            employee.setRows(Integer.parseInt(limit));
+            employeeList = iEmployeeService.getEmployeeList(employee);
         } catch (Exception e) {
             logger.error("获取列表失败！",e);
         }
@@ -152,8 +150,11 @@ public class EmployeeController {
             response.setHeader("Content-Disposition",
                     "attachment;filename=" + new String("员工列表.xls".getBytes(), "ISO-8859-1"));
             ServletOutputStream outputStream = response.getOutputStream();
-
-            employeeList = iEmployeeService.getEmployeeList(null);
+            int count = iEmployeeService.getEmployeeListCount(null);
+            Employee employee = new Employee();
+            employee.setOffset(0);
+            employee.setRows(count);
+            employeeList = iEmployeeService.getEmployeeList(employee);
             HashMap<String, Object> param = new HashMap<String, Object>();
             param.put("emps",employeeList);
             ExcelUtils.writeExcel(param,outputStream);

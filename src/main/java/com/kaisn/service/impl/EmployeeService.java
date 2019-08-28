@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -18,7 +17,7 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     private IEmployeeDao iEmployeeDao;
 
-    public List<Employee> getEmployeeList(HashMap<String, Object> param) {
+    public List<Employee> getEmployeeList(Employee param) {
         List<Employee> employeeList = iEmployeeDao.getEmployeeList(param);
         for (Employee employee:employeeList) {
             String birth = employee.getBirth();
@@ -47,5 +46,10 @@ public class EmployeeService implements IEmployeeService {
     public boolean updEmployee(Employee employee) {
         int total = iEmployeeDao.updEmployee(employee);
         return total > 0 ? true : false;
+    }
+
+    public int getEmployeeListCount(Employee employee) {
+
+        return iEmployeeDao.getEmployeeListCount(employee);
     }
 }
