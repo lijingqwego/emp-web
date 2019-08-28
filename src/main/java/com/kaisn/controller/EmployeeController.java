@@ -71,7 +71,7 @@ public class EmployeeController {
             //添加数据
             isSuccess = iEmployeeService.addEmployee(employee);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("添加数据失败！",e);
         }
         return Msg.success().add("result",isSuccess);
     }
@@ -89,7 +89,7 @@ public class EmployeeController {
             //删除数据
             isSuccess = iEmployeeService.delEmployee(employee);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("删除数据失败！",e);
         }
         return Msg.success().add("result",isSuccess);
     }
@@ -107,7 +107,7 @@ public class EmployeeController {
             //删除数据
             employee = iEmployeeService.getEmployee(param);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("获取数据失败！",e);
         }
         return Msg.success().add("result",employee);
     }
@@ -137,7 +137,7 @@ public class EmployeeController {
             //删除数据
             isSuccess = iEmployeeService.updEmployee(employee);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("更新数据失败！",e);
         }
         return Msg.success().add("result",isSuccess);
     }
@@ -158,7 +158,7 @@ public class EmployeeController {
             param.put("emps",employeeList);
             ExcelUtils.writeExcel(param,outputStream);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("导出数据失败！",e);
         }
         return Msg.success().add("list",employeeList);
     }
