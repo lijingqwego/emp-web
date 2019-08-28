@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <employee>
+    <id>001</id>
+    <name>lijing</name>
+    <gender>男</gender>
+    <address>江西吉安</address>
+    <birth>1992-01-30</birth>
+    <desc>ha lou</desc>
+    <email>1169318609@qq.com</email>
+  </employee>
+</root>

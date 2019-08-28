@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaisn.dao.IEmployeeDao">
+
+   <select id="getEmployeeList" parameterType="java.util.Map" resultType="com.kaisn.pojo.Employee">
+        SELECT
+            t.emp_id,
+            t.emp_name,
+            t.gender,
+            t.birth,
+            t.email,
+            t.desc_text,
+            t.address
+        FROM
+            t_employee t
+        <where>
+           <if test="empName != null ">
+               t.emp_name = #{empName,jdbcType=VARCHAR}
+           </if>
+        </where>
+        LIMIT #{offset},#{rows}
+   </select>
+
+    <insert id="addEmployee" parameterType="com.kaisn.pojo.Employee">
+        INSERT INTO
+          t_employee
+          (
+            emp_name,
+            gender,
+            birth,
+            email,
+            desc_text,
+            address
+          )
+          VALUES
+          (
+            #{empName},
+            #{gender},
+            #{birth},
+            #{email},
+            #{descText},
+            #{address}
+          )
+    </insert>
+
+    <delete id="delEmployee" parameterType="com.kaisn.pojo.Employee">
+        DELETE FROM t_employee WHERE emp_id = #{empId}
+    </delete>
+
+    <select id="getEmployee" parameterType="com.kaisn.pojo.Employee" resultType="com.kaisn.pojo.Employee">
+        SELECT
+            t.emp_id,
+            t.emp_name,
+            t.gender,
+            t.birth,
+            t.email,
+            t.desc_text,
+            t.address
+        FROM
+            t_employee t
+        WHERE
+            t.emp_id = #{empId}
+    </select>
+
+    <update id="updEmployee" parameterType="com.kaisn.pojo.Employee" >
+        UPDATE
+            t_employee
+        SET
+            gender=#{gender},
+            emp_name=#{empName},
+            birth=#{birth},
+            email=#{email},
+            desc_text=#{descText},
+            address=#{address}
+        WHERE
+            emp_id = #{empId}
+    </update>
+</mapper>
