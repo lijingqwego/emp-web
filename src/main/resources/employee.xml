@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <root>
-  <employee>
-    <id>001</id>
-    <name>lijing</name>
-    <gender>男</gender>
-    <address>江西吉安</address>
-    <birth>1992-01-30</birth>
-    <desc>ha lou</desc>
-    <email>1169318609@qq.com</email>
-  </employee>
+  <employeeList>
+    <employee>
+      <id>001</id>
+      <name>lijing</name>
+      <gender>男</gender>
+      <address>江西吉安</address>
+      <birth>1992-01-30</birth>
+      <desc>ha lou</desc>
+      <email>1169318609@qq.com</email>
+    </employee>
+    <employee>
+      <id>002</id>
+      <name>likai</name>
+      <gender>男</gender>
+      <address>江西南昌</address>
+      <birth>1992-11-29</birth>
+      <desc>hello</desc>
+      <email>2623463347@qq.com</email>
+    </employee>
+  </employeeList>
 </root>
