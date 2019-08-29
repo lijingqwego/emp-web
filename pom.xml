@@ -51,6 +51,8 @@
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
         <flyway.version>4.2.0</flyway.version>
         <jjwt.version>0.6.0</jjwt.version>
+
+        <cxf.version>3.1.6</cxf.version>
     </properties>
     <dependencies>
         <dependency>
@@ -256,6 +258,25 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
+        </dependency>
+
+        <!-- cxf-rt-frontend-jaxws -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <!-- cxf-core -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <!-- cxf-rt-transports-http -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
         </dependency>
     </dependencies>
 

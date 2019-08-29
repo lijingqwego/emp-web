@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.jws.WebService;
 import java.util.List;
 
-@Service
-@WebService(endpointInterface="com.kaisn.service.IEmployeeService")
+@Service(value = "employeeService")
+@WebService(serviceName = "EmployeeService")
 public class EmployeeService implements IEmployeeService {
 
     @Autowired
