@@ -23,12 +23,11 @@
 		</bean>
 
 		<!-- 扫描包下面的注解 -->
-		<context:component-scan base-package="com.kaisn.service"></context:component-scan>
-		
+		<context:component-scan base-package="com.kaisn.service"/>
+		<context:component-scan base-package="com.kaisn.mq"/>
+
 		<!-- 加载数据库配置属性文件 -->
 		<context:property-placeholder location="classpath:properties/config.properties"/>
-
-		<!--<import resource="classpath*:config/mysql-datasource.xml"/>-->
 
 		<!-- 配置数据源 借助 DruidDataSource类 -->
 		<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">

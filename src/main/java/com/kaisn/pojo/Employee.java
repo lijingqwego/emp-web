@@ -2,7 +2,9 @@ package com.kaisn.pojo;
 
 import com.alibaba.fastjson.JSON;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable{
 
     private String empId;
 

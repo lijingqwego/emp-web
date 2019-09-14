@@ -20,7 +20,7 @@
   <!-- needed for ContextLoaderListener -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:config/spring-*.xml</param-value>
+    <param-value>classpath:config/spring-context.xml;classpath:config/spring-jms.xml</param-value>
   </context-param>
 
   <!-- Bootstraps the root web application context before servlet initialization -->
