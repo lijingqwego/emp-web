@@ -41,12 +41,14 @@ public class QueryToStructUtils {
     public static String createTopNJsonParam(QueryParam param) {
         String dataSource = param.getDataSource();
         String dimension = param.getDimensions();
+        String filter = param.getFilter();
         String interval = param.getIntervals();
         String threshold = String.valueOf(param.getThreshold());
         String queryType = param.getQueryType();
         String json = ResourceReaderUtil.loadData("druid/template-"+queryType+".json");
         json = json.replace("%%dataSource%%", dataSource)
                 .replace("%%dimension%%", dimension)
+                .replace("%%filter%%",filter)
                 .replace("%%intervals%%", interval)
                 .replace("%%threshold%%", threshold);
         return json;
