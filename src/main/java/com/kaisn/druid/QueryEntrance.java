@@ -51,6 +51,31 @@ public class QueryEntrance {
         return resultMap;
     }
 
+    public static QueryParam createQueryParam(String values,String queryType){
+
+        String dataSourceStruct = QueryToParamUtils.getDataSourceStruct(values);
+        String dimensions = QueryToParamUtils.getDimenstionStruct(values);
+        String filterStruct = QueryContant.QUERY_FILTER_KEY+ QueryToParamUtils.toFilterStruct(values);
+        String intervalsStruct = QueryToParamUtils.toIntervalsStruct(values);
+        int threshold = QueryToParamUtils.getlimitStruct(values);
+
+        QueryParam queryParam = new QueryParam();
+        queryParam.setDataSource(dataSourceStruct);
+        if(StringUtils.equals(queryType,QueryContant.QUERY_TYPE_TOPN)){
+            JSONArray jsonArray = JSONArray.parseArray(dimensions);
+            String firstDimension = jsonArray.getString(0);
+            queryParam.setDimensions(firstDimension);
+        }else{
+            queryParam.setDimensions(dimensions);
+        }
+        queryParam.setFilter(filterStruct);
+        queryParam.setIntervals(intervalsStruct);
+        queryParam.setThreshold(threshold);
+        queryParam.setQueryType(queryType);
+
+        return queryParam;
+    }
+
     private static String postWithJson(String url, String json) {
         String returnValue = "这是默认返回值，接口调用失败";
         CloseableHttpClient httpClient = HttpClients.createDefault();
