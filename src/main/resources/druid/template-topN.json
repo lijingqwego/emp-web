@@ -1,0 +1,15 @@
+{
+  "queryType" : "topN",
+  "dataSource" : "%%dataSource%%",
+  "intervals" : ["%%intervals%%"],
+  "granularity" : "all",
+  "dimension" : "%%dimension%%",
+  "metric" : "count",
+  "threshold" : %%threshold%%,
+  "aggregations" : [
+    {
+      "type" : "count",
+      "name" : "count"
+    }
+  ]
+}

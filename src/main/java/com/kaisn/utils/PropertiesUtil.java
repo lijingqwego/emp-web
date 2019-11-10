@@ -2,6 +2,7 @@ package com.kaisn.utils;
 
 import org.apache.log4j.Logger;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public class PropertiesUtil {
 		InputStream inputStream = null;
 		try {
 			init();
-			inputStream = PropertiesUtil.class.getResourceAsStream(fileName);
+			inputStream = new FileInputStream(fileName);//PropertiesUtil.class.getResourceAsStream(fileName);
 			switch (type) {
 				case xmlType:
 					properties.loadFromXML(inputStream);

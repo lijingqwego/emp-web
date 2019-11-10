@@ -1,0 +1,70 @@
+{
+  "dataSource":"IMS_CHR_V1",
+  "dimensions":["neName","neType","CHR Type"],
+  "baseFilter":{
+    "CHR Type":["36","37","38"],
+    "neType":["CSCF","PSBC"],
+    "neName":["NJCSCF10BHW","NJCSCF13BHW"],
+    "dateTime":{"startTime":"2019-10-31","endTime":"2019-11-09"}
+  },
+  "conditionFilter":[
+    {
+      "logic":"no",
+      "condition": [
+        {
+          "dimension": "neName",
+          "type": "string",
+          "logic": "no",
+          "relat": "eq",
+          "value":"NJCSCF10BHW"
+        },
+        {
+          "dimension": "neType",
+          "type": "string",
+          "logic": "and",
+          "relat": "eq",
+          "value":"CSCF"
+        }
+      ]
+    },
+    {
+      "logic":"and",
+      "condition": [
+        {
+          "dimension": "CHT Type",
+          "type": "string",
+          "logic": "no",
+          "relat": "in",
+          "value":"[\"37\",\"39\"]"
+        },
+        {
+          "dimension": "neType",
+          "type": "string",
+          "logic": "or",
+          "relat": "se",
+          "value":"CSCF"
+        },
+        {
+          "dimension": "neType",
+          "type": "string",
+          "logic": "and",
+          "relat": "eq",
+          "value":"PSBC"
+        }
+      ]
+    },
+    {
+      "logic":"or",
+      "condition": [
+        {
+          "dimension": "neId",
+          "type": "string",
+          "logic": "no",
+          "relat": "bt",
+          "value":"000020;000050"
+        }
+      ]
+    }
+  ],
+  "limit":10
+}

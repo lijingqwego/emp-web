@@ -1,0 +1,10 @@
+ {
+   "queryType": "select",
+   "dataSource" : "%%dataSource%%",
+   "descending": "false",
+   "dimensions":%%dimensions%%,
+    %%filter%%,
+   "granularity": "all",
+   "intervals" : ["%%intervals%%"],
+   "pagingSpec":{"pagingIdentifiers": {}, "threshold":%%threshold%%}
+ }

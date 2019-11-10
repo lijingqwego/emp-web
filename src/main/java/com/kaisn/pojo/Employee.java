@@ -24,6 +24,16 @@ public class Employee implements Serializable{
 
     private int rows;
 
+    private String timestamp;
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public int getOffset() {
         return offset;
     }

@@ -1,0 +1,32 @@
+{
+  "type": "kafka",
+  "dataSchema": {
+    "dataSource": "%%dataSource%%",
+    "parser": {
+      "type": "string",
+      "parseSpec": {
+        "format": "json",
+        "timestampSpec": {
+          "column": "timestamp",
+          "format": "iso"
+        },
+        "dimensionsSpec": {
+          "dimensions": []
+        }
+      }
+    },
+    "metricsSpec" : [],
+    "granularitySpec": {
+      "type": "uniform",
+      "segmentGranularity": "HOUR",
+      "queryGranularity": "NONE",
+      "rollup": true
+    }
+  },
+  "ioConfig": {
+    "topic": "%%topic%%",
+    "consumerProperties": {
+      "bootstrap.servers": "192.168.109.128:9092"
+    }
+  }
+}
