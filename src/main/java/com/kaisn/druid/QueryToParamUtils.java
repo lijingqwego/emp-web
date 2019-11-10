@@ -110,9 +110,9 @@ public class QueryToParamUtils {
             String relat = jsonObject.getString("relat");
             String value = jsonObject.getString("value");
             JSONObject field = FilterUtils.switchFilter(relat, dimension, value);
-            if(tempObject.containsKey(logic)){//map中异常批次已存在，将该数据存放到同一个key（key存放的是异常批次）的map中
+            if(tempObject.containsKey(logic)){
                 tempObject.getJSONArray(logic).add(field);
-            }else{//map中不存在，新建key，用来存放数据
+            }else{
                 JSONArray tempArray = new JSONArray();
                 tempArray.add(field);
                 tempObject.put(logic, tempArray);
@@ -120,7 +120,6 @@ public class QueryToParamUtils {
         }
 
         JSONArray fields = new JSONArray();
-
         for (String key : tempObject.keySet()){
             JSONObject jsonObject = new JSONObject();
             JSONArray jsonArray = tempObject.getJSONArray(key);
@@ -130,7 +129,6 @@ public class QueryToParamUtils {
         }
         return fields;
     }
-
 
     private static JSONArray toBaseFilter(JSONObject baseFilter) {
         JSONArray chrTypeValues = baseFilter.getJSONArray("CHR Type");
