@@ -4,6 +4,7 @@
   "intervals" : ["%%intervals%%"],
   "granularity" : "all",
   "dimension" : "%%dimension%%",
+   %%filter%%,
   "metric" : "count",
   "threshold" : %%threshold%%,
   "aggregations" : [
