@@ -14,12 +14,18 @@ public class FilterUtils {
             case "bt":
                 field = FilterUtils.toBoundFilter(dimension,value,true,"bt",false,false);
                 break;
+            case "lt":
+                field = FilterUtils.toBoundFilter(dimension,value,true,"lt",false,false);
+                break;
+            case "gt":
+                field = FilterUtils.toBoundFilter(dimension,value,true,"gt",false,false);
+                break;
             case "in":
                 JSONArray inValues = JSONArray.parseArray(value);
                 field = FilterUtils.toInFilter(dimension,inValues);
                 break;
             case "se":
-                field = FilterUtils.toSelectorFilter(dimension,value);
+                field = FilterUtils.toSearchFilter(dimension,value);
                 break;
             default:
                 break;

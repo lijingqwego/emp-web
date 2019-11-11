@@ -86,6 +86,8 @@ public class QueryToParamUtils {
             String type = jsonObject.getString("logic");
             if("no".equals(type)){
                 type = typeTemp;
+            }else{
+                typeTemp = type;
             }
             JSONArray condition = jsonObject.getJSONArray("condition");
             JSONArray conditionFields = toConditionFilter(condition);
@@ -106,6 +108,8 @@ public class QueryToParamUtils {
             String logic = jsonObject.getString("logic");
             if("no".equals(logic)){
                 logic = typeTemp;
+            }else{
+                typeTemp = logic;
             }
             String relat = jsonObject.getString("relat");
             String value = jsonObject.getString("value");

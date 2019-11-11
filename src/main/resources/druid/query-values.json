@@ -1,11 +1,11 @@
 {
   "dataSource":"IMS_CHR_V1",
-  "dimensions":["neName","neType","CHR Type"],
+  "dimensions":["neName","neType","CHR Type","neId"],
   "baseFilter":{
     "CHR Type":["36","37","38"],
     "neType":["CSCF","PSBC"],
-    "neName":["NJCSCF10BHW","NJCSCF13BHW"],
-    "dateTime":{"startTime":"2019-10-31","endTime":"2019-11-09"}
+    "neName":["NJPSBC12BHW","NJCSCF12BHW"],
+    "dateTime":{"startTime":"2019-10-31 00:00:00","endTime":"2019-11-09 00:00:00"}
   },
   "conditionFilter":[
     {
@@ -15,15 +15,15 @@
           "dimension": "neName",
           "type": "string",
           "logic": "no",
-          "relat": "eq",
-          "value":"NJCSCF10BHW"
+          "relat": "se",
+          "value":"12BHW"
         },
         {
-          "dimension": "neType",
+          "dimension": "Callee IMPU",
           "type": "string",
           "logic": "and",
-          "relat": "eq",
-          "value":"CSCF"
+          "relat": "se",
+          "value":"152"
         }
       ]
     },
@@ -35,21 +35,21 @@
           "type": "string",
           "logic": "no",
           "relat": "in",
-          "value":"[\"37\",\"39\"]"
+          "value":"[\"37\",\"38\",\"39\"]"
         },
         {
-          "dimension": "neType",
+          "dimension": "Sip Status Code",
           "type": "string",
           "logic": "or",
-          "relat": "se",
-          "value":"CSCF"
+          "relat": "lt",
+          "value":"500"
         },
         {
-          "dimension": "neType",
+          "dimension": "Internal Error Code",
           "type": "string",
           "logic": "and",
           "relat": "eq",
-          "value":"PSBC"
+          "value":"100005"
         }
       ]
     },
@@ -61,7 +61,7 @@
           "type": "string",
           "logic": "no",
           "relat": "bt",
-          "value":"000020;000050"
+          "value":"000159;000629"
         }
       ]
     }
