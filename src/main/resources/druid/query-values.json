@@ -1,10 +1,10 @@
 {
   "dataSource":"IMS_CHR_V1",
-  "dimensions":["neName","neType","CHR Type","neId"],
+  "dimensions":["neName","neType","CHR Type","neId","Callee IMPU"],
   "baseFilter":{
-    "CHR Type":["36","37","38"],
+    "CHR Type":["36","37","38","39","53"],
     "neType":["CSCF","PSBC"],
-    "neName":["NJPSBC12BHW","NJCSCF12BHW"],
+    "neName":["NJPSBC12BHW","NJCSCF12BHW","NJCSCF10BHW"],
     "dateTime":{"startTime":"2019-10-31 00:00:00","endTime":"2019-11-09 00:00:00"}
   },
   "conditionFilter":[
@@ -15,15 +15,15 @@
           "dimension": "neName",
           "type": "string",
           "logic": "no",
-          "relat": "se",
-          "value":"12BHW"
+          "relat": "sic",
+          "value":"BHW"
         },
         {
           "dimension": "Callee IMPU",
           "type": "string",
           "logic": "and",
-          "relat": "se",
-          "value":"152"
+          "relat": "sft",
+          "value":"152;177"
         }
       ]
     },
@@ -48,7 +48,7 @@
           "dimension": "Internal Error Code",
           "type": "string",
           "logic": "and",
-          "relat": "eq",
+          "relat": "lt",
           "value":"100005"
         }
       ]
@@ -61,7 +61,7 @@
           "type": "string",
           "logic": "no",
           "relat": "bt",
-          "value":"000159;000629"
+          "value":"000001;000999"
         }
       ]
     }

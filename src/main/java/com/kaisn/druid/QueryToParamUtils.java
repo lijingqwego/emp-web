@@ -3,6 +3,7 @@ package com.kaisn.druid;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -135,6 +136,7 @@ public class QueryToParamUtils {
     }
 
     private static JSONArray toBaseFilter(JSONObject baseFilter) {
+        JSONArray fieldArray = new JSONArray();
         JSONArray chrTypeValues = baseFilter.getJSONArray("CHR Type");
         JSONArray neTypeValues = baseFilter.getJSONArray("neType");
         JSONArray neNameValues = baseFilter.getJSONArray("neName");
@@ -143,16 +145,21 @@ public class QueryToParamUtils {
         String startTime = dateTimeObject.getString("startTime");
         String endTime = dateTimeObject.getString("endTime");
 
-        JSONObject chrType = FilterUtils.toInFilter("CHR Type", chrTypeValues);
-        JSONObject neType = FilterUtils.toInFilter("neType", neTypeValues);
-        JSONObject neName = FilterUtils.toInFilter("neName", neNameValues);
+        if(CollectionUtils.isNotEmpty(chrTypeValues)){
+            JSONObject chrType = FilterUtils.toInFilter("CHR Type", chrTypeValues);
+            fieldArray.add(chrType);
+        }
+        if(CollectionUtils.isNotEmpty(neTypeValues)){
+            JSONObject neType = FilterUtils.toInFilter("neType", neTypeValues);
+            fieldArray.add(neType);
+        }
+        if(CollectionUtils.isNotEmpty(neNameValues)){
+            JSONObject neName = FilterUtils.toInFilter("neName", neNameValues);
+            fieldArray.add(neName);
+        }
         JSONObject dateTime = FilterUtils.toBoundFilter("dateTime", startTime + ";" + endTime,
                 false, "bt", false, false);
 
-        JSONArray fieldArray = new JSONArray();
-        fieldArray.add(chrType);
-        fieldArray.add(neType);
-        fieldArray.add(neName);
         fieldArray.add(dateTime);
 
         return fieldArray;

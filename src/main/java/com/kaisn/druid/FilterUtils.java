@@ -2,8 +2,27 @@ package com.kaisn.druid;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kaisn.utils.StringUtils;
 
 public class FilterUtils {
+
+    private static final String FILTER_TYPE_SELECTOR = "selector";
+
+    private static final String FILTER_TYPE_BOUND = "bound";
+
+    private static final String FILTER_TYPE_IN = "in";
+
+    private static final String FILTER_TYPE_SEARCH = "search";
+
+    private static final String FILTER_TYPE_REGEX = "regex";
+
+    private static final String SEARCH_TYPE_INSENSITIVE_CONTAINS = "insensitive_contains";
+
+    private static final String SEARCH_TYPE_FRAGMENT = "fragment";
+
+    private static final String SEARCH_TYPE_CONTAINS = "contains";
+
+    private static final String SEARCH_TYPE_REGEX = "regex";
 
     public static JSONObject switchFilter(String type,String dimension,String value){
         JSONObject field = null;
@@ -24,8 +43,11 @@ public class FilterUtils {
                 JSONArray inValues = JSONArray.parseArray(value);
                 field = FilterUtils.toInFilter(dimension,inValues);
                 break;
-            case "se":
-                field = FilterUtils.toSearchFilter(dimension,value);
+            case "sic":
+                field = FilterUtils.toSearchFilter(dimension,value,SEARCH_TYPE_INSENSITIVE_CONTAINS);
+                break;
+            case "sft":
+                field = FilterUtils.toSearchFilter(dimension,value,SEARCH_TYPE_FRAGMENT);
                 break;
             default:
                 break;
@@ -33,13 +55,18 @@ public class FilterUtils {
         return field;
     }
 
-    public static JSONObject toSearchFilter(String dimension, String value){
+    public static JSONObject toSearchFilter(String dimension, String value,String searchType){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("dimension",dimension);
-        jsonObject.put("type","search");
+        jsonObject.put("type",FILTER_TYPE_SEARCH);
         JSONObject query = new JSONObject();
-        query.put("type","insensitive_contains");
-        query.put("value",value);
+        query.put("type",searchType);
+        if(StringUtils.equals(searchType,SEARCH_TYPE_FRAGMENT)){
+            query.put("values",value.split(";"));
+            query.put("case_sensitive",true);
+        }else{
+            query.put("value",value);
+        }
         jsonObject.put("query",query);
         return jsonObject;
     }
@@ -47,7 +74,7 @@ public class FilterUtils {
     public static JSONObject toRegexFilter(String dimension,String patternValue){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("dimension",dimension);
-        jsonObject.put("type","regex");
+        jsonObject.put("type",FILTER_TYPE_REGEX);
         jsonObject.put("pattern",patternValue);
         return jsonObject;
     }
@@ -55,7 +82,7 @@ public class FilterUtils {
     public static JSONObject toSelectorFilter(String dimension,String value){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("dimension",dimension);
-        jsonObject.put("type","selector");
+        jsonObject.put("type",FILTER_TYPE_SELECTOR);
         jsonObject.put("value",value);
         return jsonObject;
     }
@@ -63,7 +90,7 @@ public class FilterUtils {
     public static JSONObject toInFilter(String dimension,JSONArray values){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("dimension",dimension);
-        jsonObject.put("type","in");
+        jsonObject.put("type",FILTER_TYPE_IN);
         jsonObject.put("values",values);
         return jsonObject;
     }
@@ -72,7 +99,7 @@ public class FilterUtils {
                                             String boundType, boolean lowerStrict,boolean upperStrict){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("dimension",dimension);
-        jsonObject.put("type","bound");
+        jsonObject.put("type",FILTER_TYPE_BOUND);
         if(alphaNumric){//数字
             jsonObject.put("alphaNumeric",true);
             if(lowerStrict){//true为大于；默认大于或者等于
