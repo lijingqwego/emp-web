@@ -16,7 +16,21 @@ import java.util.Map;
 
 public class QueryEntrance {
 
-    public static Map<String,Object> selectTableData(QueryParam param){
+    public static Map<String, Object> queryDruid(String queryType,String values){
+
+        Map<String, Object> resultMap = null;
+
+        QueryParam queryParam = createQueryParam(values, queryType);
+
+        if(StringUtils.equals(queryType,QueryContant.QUERY_TYPE_SELECT)){
+            resultMap = selectTableData(queryParam);
+        }else{
+            resultMap = selectCountData(queryParam);
+        }
+        return resultMap;
+    }
+
+    private static Map<String,Object> selectTableData(QueryParam param){
 
         Map<String, Object> resultMap = new HashMap<>();
 
@@ -39,7 +53,7 @@ public class QueryEntrance {
         return resultMap;
     }
 
-    public static Map<String,Object> selectCountData(QueryParam param){
+    private static Map<String,Object> selectCountData(QueryParam param){
 
         Map<String, Object> resultMap = new HashMap<>();
 
@@ -51,7 +65,7 @@ public class QueryEntrance {
         return resultMap;
     }
 
-    public static QueryParam createQueryParam(String values,String queryType){
+    private static QueryParam createQueryParam(String values,String queryType){
 
         String dataSourceStruct = QueryToParamUtils.getDataSourceStruct(values);
         String dimensions = QueryToParamUtils.getDimenstionStruct(values);
