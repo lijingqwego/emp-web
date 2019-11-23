@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS `t_employee`(
+   `emp_id` INT UNSIGNED AUTO_INCREMENT,
+   `emp_name` VARCHAR(100) NOT NULL,
+   `gender` VARCHAR(15) NOT NULL,
+   `birth` DATE,
+   `email` VARCHAR(40),
+   `desc_text` VARCHAR(200),
+   `address` VARCHAR(150),
+   PRIMARY KEY ( `emp_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into t_employee(emp_name,gender,birth,email,desc_text,address) values('lijing','man',str_to_date('1992-01-02', '%Y-%m-%d %H'),'1169318609@qq.com','hello world','JiangXi JiAn');
+insert into t_employee(emp_name,gender,birth,email,desc_text,address) values('kaisn','woman',str_to_date('1993-06-08', '%Y-%m-%d %H'),'2623463347@qq.com','hello kaisn','JiangXi NanChang');
