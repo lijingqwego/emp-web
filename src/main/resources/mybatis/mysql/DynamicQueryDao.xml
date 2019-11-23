@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaisn.dao.IDynamicQueryDao">
+
+   <select id="querySql" parameterType="com.kaisn.mysql.QueryParam" resultType="java.util.List">
+        SELECT
+       <if test="columnList != null and columnList.size>0">
+           <foreach collection="columnList" item="column" separator=",">
+               ${column}
+           </foreach>
+       </if>
+       from ${tableName}
+       <where>
+           <if test="outWhereList != null and outWhereList.size>0">
+               <foreach collection="outWhereList" item="inWhereList" separator=",">
+                   ${logic}
+                   (
+                   <if test="inWhereList != null and inWhereList.size>0">
+                       <foreach collection="inWhereList" item="inWhere" separator=",">
+                           ${logic} ${column} ${relat} #{value}
+                       </foreach>
+                   </if>
+                   )
+               </foreach>
+           </if>
+       </where>
+       <if test="groupByList != null and groupByList.size>0">
+           group by
+           <foreach collection="groupByList" item="groupBy" separator=",">
+               ${column} ${sort}
+           </foreach>
+       </if>
+       <if test="rows>0">
+           limit #{offset},#{rows}
+       </if>
+   </select>
+</mapper>
