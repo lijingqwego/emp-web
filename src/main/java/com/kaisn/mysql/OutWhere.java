@@ -6,7 +6,7 @@ public class OutWhere {
 
     private String logic;
 
-    private InWhere inWhere;
+    private List<InWhere> inWhereList;
 
     public String getLogic() {
         return logic;
@@ -16,15 +16,15 @@ public class OutWhere {
         this.logic = logic;
     }
 
-    public InWhere getInWhere() {
-        return inWhere;
+    public List<InWhere> getInWhereList() {
+        return inWhereList;
     }
 
-    public void setInWhere(InWhere inWhere) {
-        this.inWhere = inWhere;
+    public void setInWhereList(List<InWhere> inWhereList) {
+        this.inWhereList = inWhereList;
     }
 
-    class InWhere {
+    static class InWhere {
         private String logic;
 
         private String column;

@@ -5,7 +5,7 @@
     "CHR Type":["36","37","38","39","53"],
     "neType":["CSCF","PSBC"],
     "neName":["NJPSBC12BHW","NJCSCF12BHW","NJCSCF10BHW"],
-    "dateTime":{"startTime":"2019-10-31 00:00:00","endTime":"2019-11-09 00:00:00"}
+    "dateTime":{"startTime":"2019-10-31 00:00:00","endTime":"2019-11-23 00:00:00"}
   },
   "conditionFilter":[
     {
@@ -23,7 +23,7 @@
           "type": "string",
           "logic": "and",
           "relat": "sft",
-          "value":"152;177"
+          "value":"152;0"
         }
       ]
     },

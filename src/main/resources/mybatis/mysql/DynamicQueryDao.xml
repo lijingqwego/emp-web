@@ -12,12 +12,12 @@
        from ${tableName}
        <where>
            <if test="outWhereList != null and outWhereList.size>0">
-               <foreach collection="outWhereList" item="inWhereList" separator=",">
-                   ${logic}
+               <foreach collection="outWhereList" item="outWhere" separator=",">
+                   ${outWhere.logic}
                    (
-                   <if test="inWhereList != null and inWhereList.size>0">
+                   <if test="outWhere.inWhereList != null and outWhere.inWhereList.size>0">
                        <foreach collection="inWhereList" item="inWhere" separator=",">
-                           ${logic} ${column} ${relat} #{value}
+                           ${inWhere.logic} ${inWhere.column} ${inWhere.relat} #{inWhere.value}
                        </foreach>
                    </if>
                    )
@@ -27,7 +27,7 @@
        <if test="groupByList != null and groupByList.size>0">
            group by
            <foreach collection="groupByList" item="groupBy" separator=",">
-               ${column} ${sort}
+               ${groupBy.column} ${groupBy.sort}
            </foreach>
        </if>
        <if test="rows>0">
