@@ -1,5 +1,6 @@
 package com.kaisn.utils;
 
+import com.kaisn.utils.http.HttpUtils;
 import com.kaisn.utils.http.HttpsUtil;
 import org.apache.log4j.Logger;
 
@@ -11,12 +12,14 @@ public class HttpsTest {
     private static Logger logger = Logger.getLogger(HttpsTest.class);
 
     public static void main(String[] args) {
-        String url="https://192.168.109.128:8443/emp-web/emp/list";
+        String url="http://localhost:8080/emp-web/emp/query";
         Map<String, String> param = new HashMap<String, String>();
-        param.put("page","1");
-        param.put("limit","10");
+        param.put("tableName","t_employee");
+        param.put("column","emp_name");
         try {
-            String s = HttpsUtil.doPost(url,null,param,null);
+            String s = HttpUtils.postParameters(url,param);
+            System.out.println(s);
+//            String s = HttpsUtil.doPost(url,null,null,null);
             logger.debug("=======https=======>"+s);
         } catch (Exception e) {
             logger.error("request fail.",e);

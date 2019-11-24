@@ -50,7 +50,7 @@ public class PropertiesUtil {
 		InputStream inputStream = null;
 		try {
 			init();
-			inputStream = new FileInputStream(fileName);//PropertiesUtil.class.getResourceAsStream(fileName);
+			inputStream = PropertiesUtil.class.getResourceAsStream(fileName);
 			switch (type) {
 				case xmlType:
 					properties.loadFromXML(inputStream);

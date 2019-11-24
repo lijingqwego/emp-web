@@ -49,7 +49,7 @@ import java.util.Set;
 public class HttpUtils {
 
     public static final int connTimeout = 5000;
-    public static final int readTimeout = 5000;
+    public static final int readTimeout = 50000;
     public static final String charset = "UTF-8";
     private static HttpClient client = null;
 

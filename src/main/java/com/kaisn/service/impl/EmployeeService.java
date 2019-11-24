@@ -7,11 +7,11 @@ import com.kaisn.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.WebService;
+//import javax.jws.WebService;
 import java.util.List;
 
 @Service(value = "employeeService")
-@WebService(serviceName = "EmployeeService")
+//@WebService(serviceName = "EmployeeService")
 public class EmployeeService implements IEmployeeService {
 
     @Autowired

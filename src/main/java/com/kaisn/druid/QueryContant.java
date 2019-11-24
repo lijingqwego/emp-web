@@ -12,5 +12,5 @@ public class QueryContant {
 
     public static final String QUERY_DIMENSIONS_KEY = "\"dimensions\":";
 
-    public static final String QUERY_DRUID_URL = "http://192.168.109.128:8082/druid/v2?pretty";
+    public static final String QUERY_DRUID_URL = "http://localhost:8082/druid/v2?pretty";
 }
