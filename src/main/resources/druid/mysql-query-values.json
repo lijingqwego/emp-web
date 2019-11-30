@@ -1,0 +1,52 @@
+{
+  "dataSource":"t_employee",
+  "dimensions":["emp_name","gender"],
+  "baseFilter":{},
+  "conditionFilter":[
+    {
+      "logic":"no",
+      "condition": [
+        {
+          "dimension": "emp_name",
+          "type": "string",
+          "logic": "no",
+          "relat": "=",
+          "value":"lijing"
+        },
+        {
+          "dimension": "gender",
+          "type": "string",
+          "logic": "and",
+          "relat": "=",
+          "value":"man"
+        }
+      ]
+    },
+    {
+      "logic":"or",
+      "condition": [
+        {
+          "dimension": "emp_name",
+          "type": "string",
+          "logic": "no",
+          "relat": "=",
+          "value":"kaisn"
+        },
+        {
+          "dimension": "gender",
+          "type": "string",
+          "logic": "or",
+          "relat": "=",
+          "value":"woman"
+        }
+      ]
+    }
+  ],
+  "groupArray":[
+    {
+      "dimension": "gender",
+      "direction": "desc"
+    }
+  ],
+  "limit":10
+}

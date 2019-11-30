@@ -66,5 +66,11 @@
       ]
     }
   ],
+  "groupArray":[
+    {
+      "dimension": "neName",
+      "direction": "desc"
+    }
+  ],
   "limit":10
 }

@@ -1,5 +1,6 @@
 package com.kaisn.utils;
 
+import com.kaisn.druid.ResourceReaderUtil;
 import com.kaisn.utils.http.HttpUtils;
 import com.kaisn.utils.http.HttpsUtil;
 import org.apache.log4j.Logger;
@@ -14,8 +15,8 @@ public class HttpsTest {
     public static void main(String[] args) {
         String url="http://localhost:8080/emp-web/emp/query";
         Map<String, String> param = new HashMap<String, String>();
-        param.put("tableName","t_employee");
-        param.put("column","emp_name");
+        String values = ResourceReaderUtil.loadData("druid/mysql-query-values.json");
+        param.put("values",values);
         try {
             String s = HttpUtils.postParameters(url,param);
             System.out.println(s);

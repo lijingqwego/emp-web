@@ -4,10 +4,12 @@ import com.kaisn.dao.IDynamicQueryDao;
 import com.kaisn.mysql.QueryParam;
 import com.kaisn.service.IDynamicQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class DynamicQueryService implements IDynamicQueryService {
 
     @Autowired

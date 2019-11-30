@@ -1,7 +1,12 @@
 package com.kaisn.controller;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.kaisn.mysql.InWhere;
+import com.kaisn.mysql.OutWhere;
 import com.kaisn.mysql.QueryParam;
+import com.kaisn.mysql.QueryToStructUtils;
 import com.kaisn.pojo.Msg;
 import com.kaisn.service.IDynamicQueryService;
 import org.apache.log4j.Logger;
@@ -28,14 +33,8 @@ public class EmployeeController {
     @ResponseBody
     @RequestMapping(value = "/query",method = RequestMethod.POST)
     public Msg query(HttpServletRequest request){
-        System.out.println("============================");
-        String tableName = request.getParameter("tableName");
-        String column = request.getParameter("column");
-        QueryParam queryParam = new QueryParam();
-        queryParam.setTableName(tableName);
-        List<String> columnList = new ArrayList<>();
-        columnList.add(column);
-        queryParam.setColumnList(columnList);
+        String values = request.getParameter("values");
+        QueryParam queryParam = QueryToStructUtils.createQueryParam(values);
         List<Map<String, Object>> maps = iDynamicQueryService.querySql(queryParam);
         return Msg.success().add("list",maps);
     }
