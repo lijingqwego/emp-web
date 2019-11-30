@@ -1,6 +1,7 @@
 package com.kaisn.service;
 
 import com.kaisn.mysql.QueryParam;
+import com.kaisn.mysql.UpdateParam;
 
 import java.util.List;
 import java.util.Map;
@@ -8,4 +9,6 @@ import java.util.Map;
 public interface IDynamicQueryService {
 
     List<Map<String,Object>> querySql(QueryParam queryParam);
+
+    int push(String tableName,String values);
 }

@@ -34,4 +34,18 @@
             limit #{offset},#{rows}
         </if>
     </select>
+
+    <insert id="insertForeach" parameterType="com.kaisn.mysql.UpdateParam" useGeneratedKeys="false">
+        insert into ${tableName}
+        <foreach collection="values.get(0).entrySet()" index="key" item="value" open="(" separator="," close=")" >
+            #{key}
+        </foreach>
+        values
+        <foreach collection="values" item="map" index="index" open="(" separator="," close=")" >
+            <foreach collection="map.entrySet()" index="key" item="value" separator=",">
+                #{value}
+            </foreach>
+        </foreach>
+    </insert>
+
 </mapper>

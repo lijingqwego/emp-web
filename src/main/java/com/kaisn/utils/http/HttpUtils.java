@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.config.RequestConfig.Builder;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ConnectTimeoutException;
@@ -19,7 +20,9 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
@@ -30,7 +33,10 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -267,6 +273,44 @@ public class HttpUtils {
         return result;
     }
 
+    public static String postFile(String url, Map<String,String> params, File file) {
+        StringBuffer buffer = new StringBuffer();
+        try {
+            CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+            CloseableHttpResponse httpResponse = null;
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(200000).setSocketTimeout(200000000).build();
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setConfig(requestConfig);
+            MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+            multipartEntityBuilder.addBinaryBody("file",file);
+            if (params != null && !params.isEmpty()) {
+                Set<Map.Entry<String, String>> entrySet = params.entrySet();
+                for (Map.Entry<String, String> entry : entrySet) {
+                    multipartEntityBuilder.addTextBody(entry.getKey(), entry.getValue());
+                }
+            }
+            HttpEntity httpEntity = multipartEntityBuilder.build();
+            httpPost.setEntity(httpEntity);
+
+            httpResponse = httpClient.execute(httpPost);
+            HttpEntity responseEntity = httpResponse.getEntity();
+            int statusCode= httpResponse.getStatusLine().getStatusCode();
+            if(statusCode == 200){
+                BufferedReader reader = new BufferedReader(new InputStreamReader(responseEntity.getContent()));
+                String str = "";
+                while((str = reader.readLine()) != null) {
+                    buffer.append(str);
+                }
+            }
+            httpClient.close();
+            if(httpResponse!=null){
+                httpResponse.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer.toString();
+    }
 
     /**
      * 从 response 里获取 charset

@@ -24,7 +24,7 @@ public class IngestionData {
         String[] r2 = {"10","11","12","13"};
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
-        FileWriter fileWriter = new FileWriter("/home/lijing/桌面/ingestion_data.json");
+        FileWriter fileWriter = new FileWriter("/home/lijjing/桌面/ingestion_data.json");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         for (int i = 1; i < 1001; i++) {
             calendar.add(Calendar.MINUTE,-15);
