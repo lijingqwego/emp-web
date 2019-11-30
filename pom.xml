@@ -398,14 +398,14 @@
                 </configuration>
             </plugin>
             <!--使单元测试不影响项目的编译 -->
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <!--<testFailureIgnore>true</testFailureIgnore>-->
-                    <skip>true</skip><!--跳过单元测试 -->
+                    &lt;!&ndash;<testFailureIgnore>true</testFailureIgnore>&ndash;&gt;
+                    <skip>true</skip>&lt;!&ndash;跳过单元测试 &ndash;&gt;
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!--<plugin>
                 <groupId>com.googlecode.flyway</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
