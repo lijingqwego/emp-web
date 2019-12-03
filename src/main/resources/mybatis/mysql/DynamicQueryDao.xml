@@ -35,17 +35,30 @@
         </if>
     </select>
 
-    <insert id="insertForeach" parameterType="com.kaisn.mysql.UpdateParam" useGeneratedKeys="false">
-        insert into ${tableName}
-        <foreach collection="values.get(0).entrySet()" index="key" item="value" open="(" separator="," close=")" >
-            #{key}
+    <insert id="insertInfo" parameterType="com.kaisn.mysql.InsertParam" useGeneratedKeys="true" keyProperty="id">
+        insert ignore into ${tableName}
+        <foreach collection="params.keys" item="key" open="(" close=")" separator="," >
+            ${key}
         </foreach>
         values
-        <foreach collection="values" item="map" index="index" open="(" separator="," close=")" >
-            <foreach collection="map.entrySet()" index="key" item="value" separator=",">
-                #{value}
-            </foreach>
+        <foreach collection="params.keys"  item="key" open="(" close=")" separator=",">
+            #{params.${key}}
         </foreach>
     </insert>
+
+    <update id="updateInfoByID" parameterType="java.util.Map">
+        UPDATE ${tableName} set
+        <foreach item="value" index="key" collection="params" separator=",">
+            <if test="key != 'id'">
+                ${key} = #{value}
+            </if>
+        </foreach>
+        WHERE
+        <foreach item="value" index="key" collection="params" separator=",">
+            <if test="key == 'id'">
+                ID = #{value}
+            </if>
+        </foreach>
+    </update>
 
 </mapper>

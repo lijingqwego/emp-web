@@ -1,14 +1,14 @@
 package com.kaisn.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kaisn.dao.IDynamicQueryDao;
+import com.kaisn.mysql.InsertParam;
 import com.kaisn.mysql.QueryParam;
-import com.kaisn.mysql.UpdateParam;
 import com.kaisn.service.IDynamicQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,15 +26,16 @@ public class DynamicQueryService implements IDynamicQueryService {
     @Override
     public int push(String tableName,String values) {
         String[] valArray = values.split("\n");
-        JSONArray objects = new JSONArray();
+        List<Map<String,String>> objects = new ArrayList<>();
+        int count = 0;
         for (int i = 0; i < valArray.length; i++) {
-            JSONObject jsonObject = JSONObject.parseObject(valArray[i]);
-            objects.add(jsonObject);
+            InsertParam insertParam = new InsertParam();
+            insertParam.setTableName(tableName);
+            Map<String,String> map = JSONObject.parseObject(valArray[i], Map.class);
+            insertParam.setParams(map);
+            iDynamicQueryDao.insertInfo(insertParam);
+            count++;
         }
-        UpdateParam updateParam = new UpdateParam();
-        updateParam.setTableName(tableName);
-        updateParam.setValues(objects);
-        int count = iDynamicQueryDao.insertForeach(updateParam);
         return count;
     }
 }
