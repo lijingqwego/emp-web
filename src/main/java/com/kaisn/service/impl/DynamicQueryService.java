@@ -26,7 +26,6 @@ public class DynamicQueryService implements IDynamicQueryService {
     @Override
     public int push(String tableName,String values) {
         String[] valArray = values.split("\n");
-        List<Map<String,String>> objects = new ArrayList<>();
         int count = 0;
         for (int i = 0; i < valArray.length; i++) {
             InsertParam insertParam = new InsertParam();

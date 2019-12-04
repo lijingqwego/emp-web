@@ -1,24 +1,24 @@
 {
-  "dataSource":"t_employee",
-  "dimensions":["emp_name","gender"],
+  "dataSource":"ims_chr",
+  "dimensions":["ne_name","ne_type"],
   "baseFilter":{},
   "conditionFilter":[
     {
       "logic":"no",
       "condition": [
         {
-          "dimension": "emp_name",
+          "dimension": "ne_name",
           "type": "string",
           "logic": "no",
           "relat": "=",
-          "value":"lijing"
+          "value":"'NJPSBC12BHW'"
         },
         {
-          "dimension": "gender",
+          "dimension": "ne_type",
           "type": "string",
           "logic": "and",
           "relat": "=",
-          "value":"man"
+          "value":"PSBC"
         }
       ]
     },
@@ -26,25 +26,25 @@
       "logic":"or",
       "condition": [
         {
-          "dimension": "emp_name",
+          "dimension": "ne_name",
           "type": "string",
           "logic": "no",
           "relat": "=",
-          "value":"kaisn"
+          "value":"NJMTELAS12BHW"
         },
         {
-          "dimension": "gender",
+          "dimension": "ne_type",
           "type": "string",
           "logic": "or",
           "relat": "=",
-          "value":"woman"
+          "value":"MTELAS"
         }
       ]
     }
   ],
   "groupArray":[
     {
-      "dimension": "gender",
+      "dimension": "ne_type",
       "direction": "desc"
     }
   ],

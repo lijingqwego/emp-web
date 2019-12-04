@@ -14,7 +14,8 @@ public class HttpsTest {
     private static Logger logger = Logger.getLogger(HttpsTest.class);
 
     public static void main(String[] args) {
-        testPush();
+        //testPush();
+        testQuery();
     }
 
     public static void testPush(){

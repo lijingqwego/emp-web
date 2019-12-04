@@ -18,6 +18,4 @@ public class DruidTest {
 		System.out.println(JSON.toJSONString(resultMap));
 	}
 
-
-
 }
