@@ -2,7 +2,6 @@ package com.kaisn.druid;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kaisn.utils.StringUtils;
 
 public class FilterUtils {
 
@@ -18,36 +17,39 @@ public class FilterUtils {
 
     private static final String SEARCH_TYPE_INSENSITIVE_CONTAINS = "insensitive_contains";
 
-    private static final String SEARCH_TYPE_FRAGMENT = "fragment";
+    public static final String RELAT_EQ = "eq";
 
-    private static final String SEARCH_TYPE_CONTAINS = "contains";
+    public static final String RELAT_LT = "lt";
 
-    private static final String SEARCH_TYPE_REGEX = "regex";
+    public static final String RELAT_GT = "gt";
+
+    public static final String RELAT_BT = "bt";
+
+    public static final String RELAT_IN = "in";
+
+    public static final String RELAT_SE = "se";
 
     public static JSONObject switchFilter(String type,String dimension,String value){
         JSONObject field = null;
         switch (type){
-            case "eq":
-                field = FilterUtils.toSelectorFilter(dimension,value);
+            case RELAT_EQ:
+                field = toSelectorFilter(dimension,value);
                 break;
-            case "bt":
-                field = FilterUtils.toBoundFilter(dimension,value,true,"bt",false,false);
+            case RELAT_BT:
+                field = toBoundFilter(dimension,value,true,RELAT_BT,false,false);
                 break;
-            case "lt":
-                field = FilterUtils.toBoundFilter(dimension,value,true,"lt",false,false);
+            case RELAT_LT:
+                field = toBoundFilter(dimension,value,true,RELAT_LT,false,false);
                 break;
-            case "gt":
-                field = FilterUtils.toBoundFilter(dimension,value,true,"gt",false,false);
+            case RELAT_GT:
+                field = toBoundFilter(dimension,value,true,RELAT_GT,false,false);
                 break;
-            case "in":
+            case RELAT_IN:
                 JSONArray inValues = JSONArray.parseArray(value);
-                field = FilterUtils.toInFilter(dimension,inValues);
+                field = toInFilter(dimension,inValues);
                 break;
-            case "sic":
-                field = FilterUtils.toSearchFilter(dimension,value,SEARCH_TYPE_INSENSITIVE_CONTAINS);
-                break;
-            case "sft":
-                field = FilterUtils.toSearchFilter(dimension,value,SEARCH_TYPE_FRAGMENT);
+            case RELAT_SE:
+                field = toSearchFilter(dimension,value,SEARCH_TYPE_INSENSITIVE_CONTAINS);
                 break;
             default:
                 break;
@@ -61,12 +63,7 @@ public class FilterUtils {
         jsonObject.put("type",FILTER_TYPE_SEARCH);
         JSONObject query = new JSONObject();
         query.put("type",searchType);
-        if(StringUtils.equals(searchType,SEARCH_TYPE_FRAGMENT)){
-            query.put("values",value.split(";"));
-            query.put("case_sensitive",true);
-        }else{
-            query.put("value",value);
-        }
+        query.put("value",value);
         jsonObject.put("query",query);
         return jsonObject;
     }
@@ -116,13 +113,13 @@ public class FilterUtils {
     private static void setBoundValues(JSONObject jsonObject,String values,String boundType){
         String[] boundValue = values.split(";");
         switch (boundType){
-            case "lt"://大于
+            case RELAT_LT://大于
                 jsonObject.put("lower",boundValue[0]);
                 break;
-            case "gt"://小于
+            case RELAT_GT://小于
                 jsonObject.put("upper",boundValue[0]);
                 break;
-            case "bt"://在...之间
+            case RELAT_BT://在...之间
                 jsonObject.put("lower",boundValue[0]);
                 jsonObject.put("upper",boundValue[1]);
                 break;

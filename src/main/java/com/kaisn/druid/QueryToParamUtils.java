@@ -158,7 +158,7 @@ public class QueryToParamUtils {
             fieldArray.add(neName);
         }
         JSONObject dateTime = FilterUtils.toBoundFilter("dateTime", startTime + ";" + endTime,
-                false, "bt", false, false);
+                false, FilterUtils.RELAT_BT, false, false);
 
         fieldArray.add(dateTime);
 

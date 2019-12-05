@@ -17,7 +17,24 @@
                     (
                     <if test="outWhere.inWhereList != null and outWhere.inWhereList.size>0">
                         <foreach collection="outWhere.inWhereList" item="inWhere">
-                            ${inWhere.logic} ${inWhere.column} ${inWhere.relat} #{inWhere.value}
+                            ${inWhere.logic} ${inWhere.column}
+                            <choose>
+                                <when test=" inWhere.relat == 'in' ">
+                                    IN
+                                    <foreach collection="values" index="index" item="value" open="(" separator="," close=")">
+                                        #{value}
+                                    </foreach>
+                                </when >
+                                <when test=" inWhere.relat == 'between' ">
+                                    BETWEEN #{lowerValue} AND #{upperValue}
+                                </when >
+                                <when test=" inWhere.relat == 'like' ">
+                                    LIKE CONCAT('%',#{inWhere.value},'%')
+                                </when >
+                                <otherwise>
+                                    ${inWhere.relat} #{inWhere.value}
+                                </otherwise>
+                            </choose>
                         </foreach>
                     </if>
                     )

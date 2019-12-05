@@ -12,7 +12,27 @@ public class InWhere {
 
     private String value;
 
+    private String lowerValue;
+
+    private String upperValue;
+
     private List<String> valueList;
+
+    public String getLowerValue() {
+        return lowerValue;
+    }
+
+    public void setLowerValue(String lowerValue) {
+        this.lowerValue = lowerValue;
+    }
+
+    public String getUpperValue() {
+        return upperValue;
+    }
+
+    public void setUpperValue(String upperValue) {
+        this.upperValue = upperValue;
+    }
 
     public String getLogic() {
         return logic;

@@ -10,14 +10,14 @@
           "dimension": "ne_name",
           "type": "string",
           "logic": "no",
-          "relat": "=",
+          "relat": "eq",
           "value":"'NJPSBC12BHW'"
         },
         {
           "dimension": "ne_type",
           "type": "string",
           "logic": "and",
-          "relat": "=",
+          "relat": "eq",
           "value":"PSBC"
         }
       ]
@@ -29,14 +29,14 @@
           "dimension": "ne_name",
           "type": "string",
           "logic": "no",
-          "relat": "=",
+          "relat": "eq",
           "value":"NJMTELAS12BHW"
         },
         {
           "dimension": "ne_type",
           "type": "string",
           "logic": "or",
-          "relat": "=",
+          "relat": "eq",
           "value":"MTELAS"
         }
       ]
