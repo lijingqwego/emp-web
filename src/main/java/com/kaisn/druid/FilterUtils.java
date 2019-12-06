@@ -23,6 +23,10 @@ public class FilterUtils {
 
     public static final String RELAT_GT = "gt";
 
+    public static final String RELAT_EL = "el";
+
+    public static final String RELAT_EG = "eg";
+
     public static final String RELAT_BT = "bt";
 
     public static final String RELAT_IN = "in";
@@ -43,6 +47,12 @@ public class FilterUtils {
                 break;
             case RELAT_GT:
                 field = toBoundFilter(dimension,value,true,RELAT_GT,false,false);
+                break;
+            case RELAT_EL:
+                field = toBoundFilter(dimension,value,true,RELAT_EL,true,false);
+                break;
+            case RELAT_EG:
+                field = toBoundFilter(dimension,value,true,RELAT_EG,true,true);
                 break;
             case RELAT_IN:
                 JSONArray inValues = JSONArray.parseArray(value);
@@ -114,9 +124,11 @@ public class FilterUtils {
         String[] boundValue = values.split(";");
         switch (boundType){
             case RELAT_LT://大于
+            case RELAT_EL://大于或等于
                 jsonObject.put("lower",boundValue[0]);
                 break;
             case RELAT_GT://小于
+            case RELAT_EG://小于或等于
                 jsonObject.put("upper",boundValue[0]);
                 break;
             case RELAT_BT://在...之间

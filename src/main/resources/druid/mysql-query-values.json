@@ -36,8 +36,8 @@
           "dimension": "sip_status_code",
           "type": "string",
           "logic": "or",
-          "relat": "bt",
-          "value":"500;520"
+          "relat": "el",
+          "value":"500"
         }
       ]
     }

@@ -18,6 +18,10 @@ public class QueryToStructUtils {
 
     public static final String RELAT_GT = "gt";
 
+    public static final String RELAT_EL = "el";
+
+    public static final String RELAT_EG = "eg";
+
     public static final String RELAT_BT = "bt";
 
     public static final String RELAT_IN = "in";
@@ -30,6 +34,8 @@ public class QueryToStructUtils {
         MQL_RELAT_MAP.put(RELAT_EQ,"=");
         MQL_RELAT_MAP.put(RELAT_LT,">");
         MQL_RELAT_MAP.put(RELAT_GT,"<");
+        MQL_RELAT_MAP.put(RELAT_EL,">=");
+        MQL_RELAT_MAP.put(RELAT_EG,"<=");
         MQL_RELAT_MAP.put(RELAT_BT,"between");
         MQL_RELAT_MAP.put(RELAT_IN,"in");
         MQL_RELAT_MAP.put(RELAT_SE,"like");
