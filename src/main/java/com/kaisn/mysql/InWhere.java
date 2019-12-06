@@ -39,7 +39,7 @@ public class InWhere {
     }
 
     public void setLogic(String logic) {
-        this.logic = logic;
+        this.logic = logic.toUpperCase();
     }
 
     public String getColumn() {

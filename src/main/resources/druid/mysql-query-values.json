@@ -10,18 +10,19 @@
           "dimension": "ne_name",
           "type": "string",
           "logic": "no",
-          "relat": "eq",
-          "value":"'NJPSBC12BHW'"
+          "relat": "se",
+          "value":"'PSBC'"
         },
         {
           "dimension": "ne_type",
           "type": "string",
           "logic": "and",
-          "relat": "eq",
-          "value":"PSBC"
+          "relat": "in",
+          "value":"[\"PSBC\",\"CSCF\",\"MTELAS\"]"
         }
       ]
     },
+
     {
       "logic":"or",
       "condition": [
@@ -29,8 +30,8 @@
           "dimension": "ne_name",
           "type": "string",
           "logic": "no",
-          "relat": "eq",
-          "value":"NJMTELAS12BHW"
+          "relat": "se",
+          "value":"MTELAS"
         },
         {
           "dimension": "ne_type",

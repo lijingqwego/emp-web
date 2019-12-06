@@ -17,6 +17,6 @@ public class GroupBy {
     }
 
     public void setSort(String sort) {
-        this.sort = sort;
+        this.sort = sort.toUpperCase();
     }
 }

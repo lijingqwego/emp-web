@@ -13,7 +13,7 @@ public class OutWhere {
     }
 
     public void setLogic(String logic) {
-        this.logic = logic;
+        this.logic = logic.toUpperCase();
     }
 
     public List<InWhere> getInWhereList() {

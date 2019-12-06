@@ -9,7 +9,7 @@
                 ${column}
             </foreach>
         </if>
-        from ${tableName}
+        FROM ${tableName}
         <where>
             <if test="outWhereList != null and outWhereList.size>0">
                 <foreach collection="outWhereList" item="outWhere">
@@ -21,7 +21,8 @@
                             <choose>
                                 <when test=" inWhere.relat == 'in' ">
                                     IN
-                                    <foreach collection="values" index="index" item="value" open="(" separator="," close=")">
+                                    <foreach collection="inWhere.valueList" index="index" item="value"
+                                             open="(" separator="," close=")">
                                         #{value}
                                     </foreach>
                                 </when >
@@ -42,29 +43,29 @@
             </if>
         </where>
         <if test="groupByList != null and groupByList.size>0">
-            group by
+            GROUP BY
             <foreach collection="groupByList" item="groupBy" separator=",">
                 ${groupBy.column} ${groupBy.sort}
             </foreach>
         </if>
         <if test="rows>0">
-            limit #{offset},#{rows}
+            LIMIT #{offset},#{rows}
         </if>
     </select>
 
     <insert id="insertInfo" parameterType="com.kaisn.mysql.InsertParam" useGeneratedKeys="true" keyProperty="id">
-        insert ignore into ${tableName}
+        INSERT IGNORE INTO ${tableName}
         <foreach collection="params.keys" item="key" open="(" close=")" separator="," >
             ${key}
         </foreach>
-        values
+        VALUES
         <foreach collection="params.keys"  item="key" open="(" close=")" separator=",">
             #{params.${key}}
         </foreach>
     </insert>
 
     <update id="updateInfoByID" parameterType="java.util.Map">
-        UPDATE ${tableName} set
+        UPDATE ${tableName} SET
         <foreach item="value" index="key" collection="params" separator=",">
             <if test="key != 'id'">
                 ${key} = #{value}
