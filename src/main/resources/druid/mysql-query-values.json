@@ -1,6 +1,6 @@
 {
   "dataSource":"ims_chr",
-  "dimensions":["ne_name","ne_type"],
+  "dimensions":["count","ne_name","ne_type","sip_status_code"],
   "baseFilter":{},
   "conditionFilter":[
     {
@@ -11,7 +11,7 @@
           "type": "string",
           "logic": "no",
           "relat": "se",
-          "value":"'PSBC'"
+          "value":"BHW"
         },
         {
           "dimension": "ne_type",
@@ -22,23 +22,22 @@
         }
       ]
     },
-
     {
-      "logic":"or",
+      "logic":"and",
       "condition": [
         {
-          "dimension": "ne_name",
+          "dimension": "ne_type",
           "type": "string",
           "logic": "no",
           "relat": "se",
           "value":"MTELAS"
         },
         {
-          "dimension": "ne_type",
+          "dimension": "sip_status_code",
           "type": "string",
           "logic": "or",
-          "relat": "eq",
-          "value":"MTELAS"
+          "relat": "bt",
+          "value":"500;520"
         }
       ]
     }

@@ -6,7 +6,14 @@
         SELECT
         <if test="columnList != null and columnList.size>0">
             <foreach collection="columnList" item="column" separator=",">
-                ${column}
+                <choose>
+                    <when test=" column == 'count' ">
+                        COUNT(*) AS count
+                    </when >
+                    <otherwise>
+                        ${column}
+                    </otherwise>
+                </choose>
             </foreach>
         </if>
         FROM ${tableName}
@@ -27,7 +34,7 @@
                                     </foreach>
                                 </when >
                                 <when test=" inWhere.relat == 'between' ">
-                                    BETWEEN #{lowerValue} AND #{upperValue}
+                                    BETWEEN #{inWhere.lowerValue} AND #{inWhere.upperValue}
                                 </when >
                                 <when test=" inWhere.relat == 'like' ">
                                     LIKE CONCAT('%',#{inWhere.value},'%')
