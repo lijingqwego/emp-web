@@ -3,21 +3,58 @@ var conditionArr = [];
 var filterFieldList = [];//Filter Field list option in the combined condition table
 var ralationShipNameArr = [{"name": "AND", "value": "and"}, {"name": 'OR', "value": "or"}];//0is and,1is or
 var operationList = [];
+var complexDataStructureObject = {
+    values:{
+        essence:{
+            conditionArray:[]
+        }
+    }
+}
 /***Symbolic option for string type*/
-var stringOperationList = [{operationKey: 1, operationName: CHRMsg.Equal}, {
-    operationKey: 2,
-    operationName: CHRMsg.Notequalto
-}, {operationKey: 3, operationName: CHRMsg.Include}];
+var stringOperationList = [
+    {
+        operationKey: 1,
+        operationName: CHRMsg.Equal
+    },
+    {
+        operationKey: 2,
+        operationName: CHRMsg.Notequalto
+    },
+    {
+        operationKey: 3,
+        operationName: CHRMsg.Include
+    }
+];
 /***Symbolic option for number type*/
-var numberOperationList = [{operationKey: 1, operationName: CHRMsg.Equal}, {
-    operationKey: 12,
-    operationName: CHRMsg.MoreThan
-}, {operationKey: 11, operationName: CHRMsg.LessThan}, {operationKey: 2, operationName: CHRMsg.Notequalto}];
+var numberOperationList = [
+    {
+        operationKey: 1,
+        operationName: CHRMsg.Equal
+    },
+    {
+        operationKey: 12,
+        operationName: CHRMsg.MoreThan
+    },
+    {
+        operationKey: 11,
+        operationName: CHRMsg.LessThan
+    },
+    {
+        operationKey: 2,
+        operationName: CHRMsg.Notequalto
+    }
+];
 /***Symbolic option for date type*/
-var dateOperationList = [{operationKey: 12, operationName: CHRMsg.MoreThan}, {
-    operationKey: 11,
-    operationName: CHRMsg.LessThan
-}];
+var dateOperationList = [
+    {
+        operationKey: 12,
+        operationName: CHRMsg.MoreThan
+    },
+    {
+        operationKey: 11,
+        operationName: CHRMsg.LessThan
+    }
+];
 /***init*@returns*/
 $(document).ready(function () {
     initConditionTable();
@@ -56,31 +93,31 @@ function getFilterFiledList() {
                 }
             }
         }
-    }
-    ;FilterFiledArr = arrayUnique2(FilterFiledArr, "dimension");
+    };
+    FilterFiledArr = arrayUnique2(FilterFiledArr, "dimension");
     return FilterFiledArr;
 }
 
 /***Initialize the combined condition table to empty*@param tableNum*@returns*/
 function initAddTable(tableNum) {
     var strTable = '';
-    strTable += '<div class="group_condition_boxclearfix"data-num="' + transformHtmlTag(tableNum) + '"id="group_condition_box_' + transformHtmlTag(tableNum) + '">';
+    strTable += '<div class="group_condition_boxclearfix"data-num="' + tableNum + '"id="group_condition_box_' + tableNum + '">';
     strTable += '<div class="group_condition_lebel_boxfl"><span>Group RelationShip</span></div>';
     strTable += '<div class="select-box select-box-groupCondition pr fl">';
-    strTable += '<select size="1"class="groupRelationShip"onchange="groupRelationShipChange(this);"data-tablenum="' + transformHtmlTag(tableNum) + '">';
+    strTable += '<select size="1"class="groupRelationShip"onchange="groupRelationShipChange(this);"data-tablenum="' + tableNum + '">';
     for (var i = 0; i < ralationShipNameArr.length; i++) {
-        strTable += '<option value="' + transformHtmlTag(ralationShipNameArr[i]["value"]) + '">' + transformHtmlTag(ralationShipNameArr[i]["name"]) + '</option>';
+        strTable += '<option value="' + ralationShipNameArr[i]["value"] + '">' + ralationShipNameArr[i]["name"] + '</option>';
     }
     strTable += '</select>';
     strTable += '</div>';
-    strTable += '<div class="group_condition_img_box"data-num="' + transformHtmlTag(tableNum) + '"id="deleteGroupTable_' + transformHtmlTag(tableNum) + '"onclick="deleteGroupTable(this);">';
+    strTable += '<div class="group_condition_img_box"data-num="' + tableNum + '"id="deleteGroupTable_' + tableNum + '"onclick="deleteGroupTable(this);">';
     strTable += '<img src="../assets/images/rules_delete.png"alt="">';
     strTable += '</div>';
     strTable += '</div>';
-    strTable += '<table id="tableId_' + transformHtmlTag(tableNum) + '"data-tablenum=' + transformHtmlTag(tableNum) + '>';
+    strTable += '<table id="tableId_' + tableNum + '"data-tablenum=' + tableNum + '>';
     strTable += '<thead>';
     strTable += '<tr>';
-    strTable += '<td><div class="checkbox"><input autocomplete="off"type="checkbox"class="input_check"><label id="checkboxAll_' + transformHtmlTag(tableNum) + '"onclick="checkboxAll(this);"></label></div></td>';
+    strTable += '<td><div class="checkbox"><input autocomplete="off"type="checkbox"class="input_check"><label id="checkboxAll_' + tableNum + '"onclick="checkboxAll(this);"></label></div></td>';
     strTable += '<td>Relationship</td>';
     strTable += '<td>Filter Filed</td>';
     strTable += '<td>Operation</td>';
@@ -112,43 +149,43 @@ function setTables(getDataRowNum) {
         return;
     }
     var str = '';
-    str += '<tr rowId=' + transformHtmlTag(getDataRowNum) + '>';
+    str += '<tr rowId=' + getDataRowNum + '>';
     /***box*/str += '<td><div class="checkbox"><input autocomplete="off"type="checkbox"class="input_check"><label onclick="checkboxSingle(this);"></label></div></td>';
     /***Relationship drop down*/str += '<td>';
     str += '<div>';
-    str += '<select class="andOrClass"id="andOr_' + transformHtmlTag(getDataRowNum) + '"onchange="groupRowAndOrChange(this);">';
+    str += '<select class="andOrClass"id="andOr_' + getDataRowNum + '"onchange="groupRowAndOrChange(this);">';
     for (var i = 0; i < ralationShipNameArr.length; i++) {
-        str += '<option value="' + transformHtmlTag(ralationShipNameArr[i]["value"]) + '">' + transformHtmlTag(ralationShipNameArr[i]["name"]) + '</option>';
+        str += '<option value="' + ralationShipNameArr[i]["value"] + '">' + ralationShipNameArr[i]["name"] + '</option>';
     }
     str += '</select>';
     str += '</div>';
     str += '</td>';
     /***Filter Filed drop down*/str += '<td>';
     str += '<div>';
-    str += '<select class="filterFieldListClass"id="filterFieldList_' + transformHtmlTag(getDataRowNum) + '"onchange="groupRowFilterFieldChange(this);">';
+    str += '<select class="filterFieldListClass"id="filterFieldList_' + getDataRowNum + '"onchange="groupRowFilterFieldChange(this);">';
     for (var i = 0; i < filterFieldList.length; i++) {
-        str += '<option value="' + transformHtmlTag(filterFieldList[i]["dimension"]) + '"data-type="' + transformHtmlTag(filterFieldList[i]["setType"]) + '">' + transformHtmlTag(filterFieldList[i]["dimension"]) + '</option>';
+        str += '<option value="' + filterFieldList[i]["dimension"] + '"data-type="' + filterFieldList[i]["setType"] + '">' + filterFieldList[i]["dimension"] + '</option>';
     }
     str += '</div>';
     str += '</td>';
     /***greater than less than the symbol pull down*/str += '<td>';
     str += '<div>';
-    str += '<select class="symbolListClass"id="symbolList_' + transformHtmlTag(getDataRowNum) + '"onchange="groupRowSymbolChange(this);">';
+    str += '<select class="symbolListClass"id="symbolList_' + getDataRowNum + '"onchange="groupRowSymbolChange(this);">';
     for (var i = 0; i < operationList.length; i++) {
-        str += '<option value="' + transformHtmlTag(operationList[i]["operationKey"]) + '">' + transformHtmlTag(operationList[i]["operationName"]) + '</option>';
+        str += '<option value="' + operationList[i]["operationKey"] + '">' + operationList[i]["operationName"] + '</option>';
     }
     str += '</div>';
     str += '</td>';
     /***Value text box or date box*/str += '<td>';
     str += '<div>';
     if (filterFieldList[0]["setType"] == "string" || filterFieldList[0]["setType"] == "number") {
-        str += '<input class="filterValue_input"type="text"id="filterValueInput_' + transformHtmlTag(getDataRowNum) + '"onkeyup="onKeyUpChangeValue(this);"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
-        str += '<input class="filter_form_datetime"style="display:none;"readonly type="text"id="filterFormDatetime_' + transformHtmlTag(getDataRowNum) + '"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
+        str += '<input class="filterValue_input"type="text"id="filterValueInput_' + getDataRowNum + '"onkeyup="onKeyUpChangeValue(this);"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
+        str += '<input class="filter_form_datetime"style="display:none;"readonly type="text"id="filterFormDatetime_' + getDataRowNum + '"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
     }
     ;
     if (filterFieldList[0]["setType"] == "datetime") {
-        str += '<input class="filterValue_input"style="display:none;"type="text"id="filterValueInput_' + transformHtmlTag(getDataRowNum) + '"onkeyup="onKeyUpChangeValue(this);"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
-        str += '<input class="filter_form_datetime"readonly type="text"id="filterFormDatetime_' + transformHtmlTag(getDataRowNum) + '"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
+        str += '<input class="filterValue_input"style="display:none;"type="text"id="filterValueInput_' + getDataRowNum + '"onkeyup="onKeyUpChangeValue(this);"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
+        str += '<input class="filter_form_datetime"readonly type="text"id="filterFormDatetime_' + getDataRowNum + '"placeholder="' + CHRMsg.Enter + '"autocomplete="off">';
     }
     str += '</div>';
     str += '</td>';
@@ -257,7 +294,7 @@ function select2AddGroupRowEvent(getDataTableNum, getDataRowNum, conditionInnerA
     }).on("select2:open", function (e) {
         /***Open the select drop-down box to get the selected value*add title*/
         $("#select2-filterFieldList_" + getDataRowNum + "-results").on("mouseover", "li", function () {
-            $(this).attr("title", transformHtmlTag($(this).text()));
+            $(this).attr("title", $(this).text());
         });
     });
     /***Combined condition---Operation*/
@@ -268,7 +305,7 @@ function select2AddGroupRowEvent(getDataTableNum, getDataRowNum, conditionInnerA
     }).on("select2:open", function (e) {
         /***Open the select drop-down box to get the selected value*add title*/
         $("#select2-symbolList_" + getDataRowNum + "-results").on("mouseover", "li", function () {
-            $(this).attr("title", transformHtmlTag($(this).text()));
+            $(this).attr("title", $(this).text());
         });
     });
     ;var obj = {
@@ -311,8 +348,8 @@ function initTableDateTime() {
                     }
                 }
             }
-        }
-        ;complexDataStructureObject.values.essence.conditionArray = conditionArr
+        };
+        complexDataStructureObject.values.essence.conditionArray = conditionArr
     });
 }
 
@@ -368,7 +405,7 @@ function commonChange(thisBtn, conditionInnerArrKey) {
                 $("#symbolList_" + getDataTableRowNum + "").html("");
                 var str = '';
                 for (var i = 0; i < operationList.length; i++) {
-                    str += '<option value="' + transformHtmlTag(operationList[i]["operationKey"]) + '">' + transformHtmlTag(operationList[i]["operationName"]) + '</option>';
+                    str += '<option value="' + operationList[i]["operationKey"] + '">' + operationList[i]["operationName"] + '</option>';
                 }
                 $("#symbolList_" + getDataTableRowNum + "").append(str);
                 $("#symbolList_" + getDataTableRowNum + "").val(conditionInnerArr[j]["rule"]).trigger("change");
@@ -564,7 +601,7 @@ function rendConditionGroup() {
                     minimumResultsForSearch: -1
                 }).on("select2:open", function (e) {
                     $(".select2-results__options").on("mouseover", "li", function () {
-                        $(this).attr("title", transformHtmlTag($(this).text()));
+                        $(this).attr("title", $(this).text());
                     });
                 });
                 $("#filterFieldList_" + getDataRowNum + "").val(conditionInnerArr[j]["dimension"]).trigger("change");
@@ -573,7 +610,7 @@ function rendConditionGroup() {
                     minimumResultsForSearch: -1
                 }).on("select2:open", function (e) {
                     $(".select2-results__options").on("mouseover", "li", function () {
-                        $(this).attr("title", transformHtmlTag($(this).text()));
+                        $(this).attr("title", $(this).text());
                     });
                 })
                 $("#symbolList_" + getDataRowNum + "").val(conditionInnerArr[j]["rule"]).trigger("change");

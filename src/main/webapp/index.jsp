@@ -5,9 +5,11 @@
   Time: 上午9:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Title</title>
 </head>
 <body>
@@ -19,6 +21,11 @@
                 class="addSymTxt">Condition Group</label></div>
     </div>
     <div class="table_boxgroupTable groupTableEnStyle"></div>
+
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="message_zh.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/css" src="index.css"></script>
 </body>
 </html>
 
