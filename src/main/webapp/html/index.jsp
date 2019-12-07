@@ -22,10 +22,10 @@
     </div>
     <div class="table_boxgroupTable groupTableEnStyle"></div>
 
-    <script type="text/javascript" src="jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="message_zh.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-    <script type="text/css" src="index.css"></script>
+    <script type="text/javascript" src="../statis/js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="asset/js/message_zh.js"></script>
+    <script type="text/javascript" src="asset/js/index.js"></script>
+    <script type="text/css" src="asset/css/index.css"></script>
 </body>
 </html>
 

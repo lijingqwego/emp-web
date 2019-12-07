@@ -9,5 +9,5 @@ var CHRMsg = {
     Enter:"请输入",
     MaximumOfFiveCombinedConditions:"最多添加5个组合条件",
     PleaseSelect:"清选择",
-    MaximumOfTenCombinedConditions:"最多添加10个组合条件",
+    MaximumOfTenCombinedConditions:"最多添加10个组合条件"
 };
