@@ -9,7 +9,7 @@ public class DruidTest {
 
 	public static void main(String[] args) throws IOException {
 
-		String queryType = QueryContant.QUERY_TYPE_TOPN;
+		String queryType = QueryContant.QUERY_TYPE_SELECT;
 
 		String values = ResourceReaderUtil.loadData("druid/query-values.json");
 

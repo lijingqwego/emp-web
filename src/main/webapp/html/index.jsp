@@ -17,8 +17,10 @@
         <div class="main_content_symbol_position"><label class="fontStyle">组合条件</label>
             <lable class="horizontal_symbolfontStyle">:</lable>
         </div>
-        <div class="conditionStyle" onclick="addConditionGroup(this);"><label class="addSym">+</label><label
-                class="addSymTxt">Condition Group</label></div>
+        <div class="conditionStyle" onclick="addConditionGroup(this);">
+            <label class="addSym">+</label>
+            <label class="addSymTxt">Condition Group</label>
+        </div>
     </div>
     <div class="table_boxgroupTable groupTableEnStyle"></div>
 

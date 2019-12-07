@@ -38,45 +38,45 @@ public class IngestionData {
             int ra2 = (int)(Math.random()* netNum.length);
             int random4 = (int)((Math.random()*9+1)*1000);
 
-            LinkedHashMap<String,String> jsonObject = new LinkedHashMap<String,String>();
-            jsonObject.put("chr_type",chrType[n]);
-            jsonObject.put("chr_version","64");
-            jsonObject.put("release_node_type","ATS");
-            jsonObject.put("ne_type",neType[n]);
-            jsonObject.put("ne_name","NJ"+neType[n]+ netNum[ra2]+"BHW");
-
-            String neId = 2000000+i+"";
-            jsonObject.put("ne_id",neId.substring(1));
-            jsonObject.put("ne_version","V200R006");
-
-            jsonObject.put("caller_impu",phone[b]+random4);
-            jsonObject.put("callee_impu",phone[b]+random4);
-            jsonObject.put("internal_error_code",errorCode[m]);
-            jsonObject.put("sip_status_code",sipCode[a]);
-            jsonObject.put("date_time",dateTime);
-            jsonObject.put("split_time",dateTime.substring(11));
-
-//            JSONObject jsonObject = new JSONObject();
-//            jsonObject.put("productFamily","IMS");
-//            jsonObject.put("dateTime",dateTime);
-//            jsonObject.put("productTime",longTime+"");
-//            jsonObject.put("splitTime",dateTime.substring(11));
-//            jsonObject.put("time",longTime+"");
-//            jsonObject.put("CHR Type",chrType[n]);
-//            jsonObject.put("CHRVersion","64");
+//            LinkedHashMap<String,String> jsonObject = new LinkedHashMap<String,String>();
+//            jsonObject.put("chr_type",chrType[n]);
+//            jsonObject.put("chr_version","64");
+//            jsonObject.put("release_node_type","ATS");
+//            jsonObject.put("ne_type",neType[n]);
+//            jsonObject.put("ne_name","NJ"+neType[n]+ netNum[ra2]+"BHW");
 //
-//            jsonObject.put("Release Node Type","ATS");
-//            jsonObject.put("neType",neType[n]);
-//
-//            jsonObject.put("neName","NJ"+neType[n]+r2[ra2]+"BHW");
 //            String neId = 2000000+i+"";
-//            jsonObject.put("neId",neId.substring(1));
-//            jsonObject.put("neVersion","V200R006");
+//            jsonObject.put("ne_id",neId.substring(1));
+//            jsonObject.put("ne_version","V200R006");
 //
-//            jsonObject.put("Caller IMPU",phone[b]+random4);
-//            jsonObject.put("Callee IMPU",phone[b]+random4);
-//            jsonObject.put("Internal Error Code",errorCode[m]);
-//            jsonObject.put("Sip Status Code",sipCode[a]);
+//            jsonObject.put("caller_impu",phone[b]+random4);
+//            jsonObject.put("callee_impu",phone[b]+random4);
+//            jsonObject.put("internal_error_code",errorCode[m]);
+//            jsonObject.put("sip_status_code",sipCode[a]);
+//            jsonObject.put("date_time",dateTime);
+//            jsonObject.put("split_time",dateTime.substring(11));
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("productFamily","IMS");
+            jsonObject.put("dateTime",dateTime);
+            jsonObject.put("productTime",longTime+"");
+            jsonObject.put("splitTime",dateTime.substring(11));
+            jsonObject.put("time",longTime+"");
+            jsonObject.put("CHR Type",chrType[n]);
+            jsonObject.put("CHRVersion","64");
+
+            jsonObject.put("Release Node Type","ATS");
+            jsonObject.put("neType",neType[n]);
+
+            jsonObject.put("neName","NJ"+neType[n]+netNum[ra2]+"BHW");
+            String neId = 2000000+i+"";
+            jsonObject.put("neId",neId.substring(1));
+            jsonObject.put("neVersion","V200R006");
+
+            jsonObject.put("Caller IMPU",phone[b]+random4);
+            jsonObject.put("Callee IMPU",phone[b]+random4);
+            jsonObject.put("Internal Error Code",errorCode[m]);
+            jsonObject.put("Sip Status Code",sipCode[a]);
 
             bufferedWriter.write(JSON.toJSONString(jsonObject));
             bufferedWriter.newLine();
