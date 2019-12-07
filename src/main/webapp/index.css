@@ -1,0 +1,245 @@
+@charset "UTF-8";
+.wrap.main.main_body.main_content.main_content_horizontal.addCondition_content_height.main_content_symbol_position {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    float: left;
+}
+
+.wrap.main.main_body.main_content.main_content_horizontal.addCondition_content_height.conditionStyle {
+    padding: 0px 5px 0px 5px;
+    border: 1px solid #D2D2D2;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.wrap.main.main_body.main_content.main_content_horizontal.addCondition_content_height.conditionStyle.addSym {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #07A0DE;
+    padding-right: 10px;
+    line-height: 35px;
+    padding-left: 10px;
+    height: 35px;
+    display: inline-block;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.wrap.main.main_body.main_content.main_content_horizontal.addCondition_content_height.conditionStyle.addSymTxt {
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #07A0DE;
+    padding-right: 10px;
+    line-height: 39px;
+    padding-left: 5px;
+    height: 39px;
+    margin-bottom: 0;
+    display: inline-block;
+}
+
+/*condition group table---start*/
+.main_content.groupTable {
+    margin: 010px 10px 10px;
+}
+
+@media screen and(max-width: 1360px) {
+    .main_content.groupTable {
+        max-width: 1110px;
+    }
+}
+
+.main_content.groupTable table {
+    min-width: 100%;
+}
+
+.main_content.groupTable table thead {
+    font-size: 14px;
+    text-align: center;
+}
+
+.main_content.groupTable table thead tr, .main_content.groupTable table tbody tr {
+    height: 38px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.main_content.groupTable table thead trth:nth-child(1), .main_content.groupTable table tbody trth:nth-child(1), .main_content.groupTable table thead trtd:nth-child(1), .main_content.groupTable table tbody trtd:nth-child(1) {
+    min-width: 50px;
+    width: 50px !important;
+    max-width: 50px;
+}
+
+.main_content.groupTable table thead trth:first-child.input_check, .main_content.groupTable table tbody trth:first-child.input_check, .main_content.groupTable table thead trtd:first-child.input_check, .main_content.groupTable table tbody trtd:first-child.input_check {
+    position: absolute;
+    visibility: hidden;
+}
+
+.main_content.groupTable table thead trth:first-child label, .main_content.groupTable table tbody trth:first-child label, .main_content.groupTable table thead trtd:first-child label, .main_content.groupTable table tbody trtd:first-child label {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    min-height: 12px;
+    padding-left: 10px;
+    margin-bottom: 0;
+    cursor: pointer;
+    position: relative;
+    background: url(../../../assets/images/table_check_n.png) no-repeat;
+}
+
+.main_content.groupTable table thead trth:nth-child(2), .main_content.groupTable table tbody trth:nth-child(2), .main_content.groupTable table thead trtd:nth-child(2), .main_content.groupTable table tbody trtd:nth-child(2) {
+    min-width: 100px;
+    width: 100px !important;
+    max-width: 100px;
+}
+
+.main_content.groupTable table thead trth:nth-child(3), .main_content.groupTable table tbody trth:nth-child(3), .main_content.groupTable table thead trtd:nth-child(3), .main_content.groupTable table tbody trtd:nth-child(3) {
+    min-width: 150px;
+    width: 150px !important;
+    max-width: 150px;
+}
+
+.main_content.groupTable table thead trth:nth-child(4), .main_content.groupTable table tbody trth:nth-child(4), .main_content.groupTable table thead trtd:nth-child(4), .main_content.groupTable table tbody trtd:nth-child(4) {
+    min-width: 110px;
+    width: 110px !important;
+    max-width: 110px;
+}
+
+.main_content.groupTable table thead trth:nth-child(5), .main_content.groupTable table tbody trth:nth-child(5), .main_content.groupTable table thead trtd:nth-child(5), .main_content.groupTable table tbody trtd:nth-child(5) {
+    min-width: 210px;
+    width: 210px !important;
+    max-width: 210px;
+}
+
+.main_content.groupTable table thead trth:nth-child(6), .main_content.groupTable table tbody trth:nth-child(6), .main_content.groupTable table thead trtd:nth-child(6), .main_content.groupTable table tbody trtd:nth-child(6) {
+    min-width: 80px;
+    width: 80px !important;
+    max-width: 80px;
+}
+
+.main_content.groupTable table tbodytr:first-child td {
+    border-top: 1px solid #d6d6d6;
+}
+
+.main_content.groupTable table tbody tr td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #b1b3ba; /*border:0;*/
+    border-bottom: 1px solid #d6d6d6;
+    border-left: 1px solid #d6d6d6;
+    box-sizing: border-box;
+}
+
+.main_content.groupTable table thead trth:nth-child(6) img, .main_content.groupTable table tbody trth:nth-child(6) img, .main_content.groupTable table thead trtd:nth-child(6) img, .main_content.groupTable table tbody trtd:nth-child(6) img {
+    width: 15px;
+    height: 15px;
+    margin: 010px;
+}
+
+.main_content.groupTable.group_condition_box {
+    height: 48px;
+    line-height: 28px;
+    padding: 10px 10px 10 px0;
+}
+
+.main_content.groupTable.group_condition_box.group_condition_lebel_box {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333333;
+    margin-right: 10px;
+}
+
+.main_content.groupTable.group_condition_box.select-box {
+    width: 110px;
+    transform: translateY(0);
+    border: 0;
+    height: 28px;
+    border-radius: 4px;
+}
+
+.main_content.groupTable.group_condition_box.group_condition_img_box {
+    float: right;
+    cursor: pointer;
+}
+
+.select2-container {
+    z-index: 9999;
+}
+
+.main_content.groupTable.group_condition_box.select-box.select2-container {
+    height: 28px;
+    width: 100px !important;
+}
+
+.main_content.groupTable.group_condition_box.select-box.select2-container.select2-selection--single {
+    height: 28px;
+    border: 1px solid #c7c7c7;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.main_content.groupTable.group_condition_box.select-box.select2-container--default.select2-selection--single.select2-selection__rendered {
+    font-weight: normal;
+}
+
+.main_content.groupTable.group_condition_box.select-box.select2-container--default.select2-selection--single.select2-selection__rendered {
+    line-height: 28px;
+    text-align: left;
+}
+
+.select2-container.select2-selection--single.select2-selection__rendered {
+    padding-right: 35px;
+    font-size: 14px;
+    color: #333;
+}
+
+.main_content.groupTable.group_condition_box.select-box.select2-container--default.select2-selection--single.select2-selection__arrow {
+    height: 28px;
+    right: 10px;
+}
+
+.main_content.groupTable table thead trth:nth-child(5).filterValue_input, .main_content.groupTable table tbody trth:nth-child(5).filterValue_input, .main_content.groupTable table thead trtd:nth-child(5).filterValue_input, .main_content.groupTable table tbody trtd:nth-child(5).filterValue_input {
+    width: 300px;
+    height: 28px;
+    border: 1px solid #c7c7c7;
+    color: #333;
+    border-radius: 4px;
+    padding-left: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.main_content.groupTable table thead trth:nth-child(5).filter_form_datetime, .main_content.groupTable table tbody trth:nth-child(5).filter_form_datetime, .main_content.groupTable table thead trtd:nth-child(5).filter_form_datetime, .main_content.groupTable table tbody trtd:nth-child(5).filter_form_datetime {
+    margin: 0 auto;
+    width: 300px;
+    height: 28px;
+    border: 1px solid #c7c7c7;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #999;
+    padding-left: 8px;
+    padding-right: 26px;
+    color: #333;
+    border-radius: 4px;
+    background: url(../../assets/images/date_icon.png) 275px 4px no-repeat;
+    background-size: 18px 18px;
+    background-color: #fff;
+}
+
+.main_content.groupTable table tbody tr td.select2-container {
+    width: 150px !important;
+}
+
+.select2-results__option[aria-selected] {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.main_content.groupTable table thead trth:first-childlabel.selectCheckBox, .main_content.groupTable table tbody trth:first-childlabel.selectCheckBox, .main_content.groupTable table thead trtd:first-childlabel.selectCheckBox, .main_content.groupTable table tbody trtd:first-childlabel.selectCheckBox {
+    background: url(../../../assets/images/table_check_y.png) no-repeat;
+}
