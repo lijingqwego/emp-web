@@ -15,7 +15,28 @@ public class HttpsTest {
 
     public static void main(String[] args) {
         //testPush();
-        testQuery();
+        //testQuery();
+        testSend();
+    }
+
+    public static void testSend(){
+        String url="http://localhost:8080/emp-web/emp/sendEmail";
+        Map<String, String> param = new HashMap<String, String>();
+        //收件人邮箱
+        String toEmailAddress = "2623463347@qq.com";
+        //邮件主题
+        String emailTitle = "Druid查询结构";
+        //邮件内容
+        String values = ResourceReaderUtil.loadData("druid/mysql-query-values.json");
+        param.put("toEmailAddress",toEmailAddress);
+        param.put("emailTitle",emailTitle);
+        param.put("emailContent",values);
+        try {
+            String s = HttpUtils.postParameters(url,param);
+            System.out.println(s);
+        } catch (Exception e) {
+            logger.error("request fail.",e);
+        }
     }
 
     public static void testPush(){

@@ -1,6 +1,8 @@
 package com.kaisn.controller;
 
 
+import com.kaisn.mail.EMailUtils;
+import com.kaisn.mail.VerifyCodeUtil;
 import com.kaisn.mysql.QueryParam;
 import com.kaisn.mysql.QueryToStructUtils;
 import com.kaisn.pojo.Msg;
@@ -54,5 +56,48 @@ public class EmployeeController {
             logger.error("上传文件失败",e);
         }
         return Msg.success().add("list",count);
+    }
+
+    /**
+     * 发送自由编辑的邮件
+     * @param request
+     * @return
+     */
+    @RequestMapping(value={"/sendEmail"},method=RequestMethod.POST)
+    @ResponseBody
+    public Msg sendEmailOwn(HttpServletRequest request){
+        try{
+            //收件人邮箱
+            String toEmailAddress = request.getParameter("toEmailAddress");
+            //邮件主题
+            String emailTitle = request.getParameter("emailTitle");
+            //邮件内容
+            String emailContent = request.getParameter("emailContent");
+            //发送邮件
+            EMailUtils.sendEmail(toEmailAddress, emailTitle, emailContent);
+            return Msg.success();
+        }catch(Exception e){
+            logger.error("邮件发送失败",e);
+            return Msg.fail();
+        }
+    }
+
+    @RequestMapping(value={"/sendEmailSystem/"},method=RequestMethod.POST)
+    @ResponseBody
+    public Msg sendEmailSystem(@RequestParam("toEmailAddress") String toEmailAddress){
+        try{
+            //生成验证码
+            String verifyCode = VerifyCodeUtil.generateVerifyCode(6);
+            //邮件主题
+            String emailTitle = "【好学堂】邮箱验证";
+            //邮件内容
+            String emailContent = "您正在【好学堂】进行邮箱验证，您的验证码为：" + verifyCode + "，请于10分钟内完成验证！";
+            //发送邮件
+            EMailUtils.sendEmail(toEmailAddress, emailTitle, emailContent);
+            return Msg.success().add("verifyCode",verifyCode);
+        } catch(Exception e) {
+            logger.error("邮件发送失败",e);
+            return Msg.fail();
+        }
     }
 }
