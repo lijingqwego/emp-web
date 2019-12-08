@@ -1,6 +1,8 @@
 package com.kaisn.controller;
 
 
+import com.kaisn.druid.QueryContant;
+import com.kaisn.druid.QueryEntrance;
 import com.kaisn.mail.EMailUtils;
 import com.kaisn.mail.VerifyCodeUtil;
 import com.kaisn.mysql.QueryParam;
@@ -39,6 +41,15 @@ public class EmployeeController {
         QueryParam queryParam = QueryToStructUtils.createQueryParam(values);
         List<Map<String, Object>> maps = iDynamicQueryService.querySql(queryParam);
         return Msg.success().add("list",maps);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/count",method = RequestMethod.POST)
+    public Msg count(HttpServletRequest request){
+        String values = request.getParameter("values");
+        Map<String, Object> resultMap = QueryEntrance.queryDruid(QueryContant.QUERY_TYPE_TOPN, values);
+        Object data = resultMap.get("data");
+        return Msg.success().add("list",data);
     }
 
     @ResponseBody
