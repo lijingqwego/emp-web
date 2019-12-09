@@ -56,12 +56,16 @@ public class QueryToResultUtils {
             JSONArray resultArray = jsonObject.getJSONArray("result");
             JSONArray countList = new JSONArray();
             for (int j = 0; j < resultArray.size(); j++) {
-                JSONObject result = resultArray.getJSONObject(i);
+                JSONObject result = resultArray.getJSONObject(j);
                 JSONObject countObject = new JSONObject();
                 for(Map.Entry<String,Object> entry : result.entrySet()){
-                    if(StringUtils.equals("dateTime",entry.getKey()) && StringUtils.equals("hour",granularity)){
-                        countObject.put("dateTime",entry.getValue()+":00");
-                    }else{
+                    if(StringUtils.equals("hour",granularity)){
+                        if(StringUtils.equals("dateTime",entry.getKey())){
+                            countObject.put("dateTime",entry.getValue()+":00");
+                        } else {
+                            countObject.put(entry.getKey(),entry.getValue());
+                        }
+                    } else {
                         countObject.put(entry.getKey(),entry.getValue());
                     }
                 }
