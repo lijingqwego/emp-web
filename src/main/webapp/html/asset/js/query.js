@@ -1,10 +1,15 @@
 var mysqlQueryParam = {
     "dataSource":"ims_chr",
     "dimensions":["count","ne_name"],
-    "baseFilter":{},
+    "baseFilter":{
+        "CHR Type":["36","37","38","39","53"],
+        "neType":["CSCF","PSBC","MTELAS"],
+        "neName":["NJPSBC11BHW","NJMTELAS11BHW","NJCSCF13BHW"],
+        "dateTime":{"startTime":"2019-11-31 00:00:00","endTime":"2019-12-07 23:00:00"}
+    },
     "conditionFilter":[
         {
-            "logic":"no",
+            "logic":"and",
             "condition": [
                 {
                     "dimension": "ne_name",
