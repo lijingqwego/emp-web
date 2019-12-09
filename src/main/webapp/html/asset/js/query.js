@@ -1,7 +1,7 @@
 var mysqlQueryParam = {
     "dataSource":"ims_chr",
     "dimensions":["count","date_time"],
-    "granularity": "hour",
+    "granularity": "day",
     "baseFilter":{
         "CHR Type":["36","37","38","39","53"],
         "neType":["CSCF","PSBC","MTELAS"],
@@ -59,7 +59,8 @@ var mysqlQueryParam = {
 
 var druidQueryParam = {
     "dataSource":"IMS_CHR",
-    "dimensions":["neName"],
+    "dimensions":["dateTime"],
+    "granularity": "hour",
     "baseFilter":{
         "CHR Type":["36","37","38","39","53"],
         "neType":["CSCF","PSBC"],
@@ -127,7 +128,7 @@ var druidQueryParam = {
     ],
     "groupArray":[
         {
-            "dimension": "neName",
+            "dimension": "dateTime",
             "direction": "asc"
         }
     ],

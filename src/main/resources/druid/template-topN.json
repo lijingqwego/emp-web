@@ -3,7 +3,7 @@
   "dataSource" : "%%dataSource%%",
   "intervals" : ["%%intervals%%"],
   "granularity" : "all",
-  "dimension" : "%%dimension%%",
+  "dimension" : %%dimension%%,
    %%filter%%,
   "metric" : "count",
   "threshold" : %%threshold%%,

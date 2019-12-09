@@ -2,6 +2,12 @@ package com.kaisn.druid;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
 public class QueryToResultUtils {
 
@@ -33,21 +39,45 @@ public class QueryToResultUtils {
     }
 
     public static int getTotalResult(String druidResult){
-        JSONArray jsonArray = JSONArray.parseArray(druidResult);
-        JSONObject jsonObject = jsonArray.getJSONObject(0);
-        JSONObject event = jsonObject.getJSONObject("event");
-        int count = event.getIntValue("count");
-        return count;
-    }
-
-    public static JSONArray getCountResult(String druidResult){
-        JSONArray resultArray = new JSONArray();
+        int count = 0;
         JSONArray jsonArray = JSONArray.parseArray(druidResult);
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            JSONArray result = jsonObject.getJSONArray("result");
-            resultArray.addAll(result);
+            JSONObject event = jsonObject.getJSONObject("event");
+            count += event.getIntValue("count");
         }
-        return resultArray;
+        return count;
+    }
+
+    public static JSONArray getCountResult(String druidResult,String granularity){
+        JSONArray countArray = new JSONArray();
+        JSONArray jsonArray = JSONArray.parseArray(druidResult);
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            JSONArray resultArray = jsonObject.getJSONArray("result");
+            JSONArray countList = new JSONArray();
+            for (int j = 0; j < resultArray.size(); j++) {
+                JSONObject result = resultArray.getJSONObject(i);
+                JSONObject countObject = new JSONObject();
+                for(Map.Entry<String,Object> entry : result.entrySet()){
+                    if(StringUtils.equals("dateTime",entry.getKey()) && StringUtils.equals("hour",granularity)){
+                        countObject.put("dateTime",entry.getValue()+":00");
+                    }else{
+                        countObject.put(entry.getKey(),entry.getValue());
+                    }
+                }
+                countList.add(countObject);
+            }
+            countArray.addAll(countList);
+        }
+        return countArray;
+    }
+
+    private static String formatDateTime(String dateTime,String granularity){
+        String result  = null;
+        if(StringUtils.equals("day",granularity)){
+            result = dateTime + ":00:00";
+        }
+        return result;
     }
 }

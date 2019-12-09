@@ -30,6 +30,17 @@ public class QueryToParamUtils {
         return JSON.toJSONString(dimensions);
     }
 
+    public static String getGranularityStruct(String values){
+
+        String granularity = "all";
+
+        JSONObject valuesObject = JSONObject.parseObject(values);
+
+        granularity = valuesObject.getString("granularity");
+
+        return granularity;
+    }
+
     public static int getlimitStruct(String values){
 
         JSONObject valuesObject = JSONObject.parseObject(values);
