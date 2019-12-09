@@ -34,8 +34,7 @@ public class QueryToResultUtils {
         JSONArray jsonArray = JSONArray.parseArray(druidResult);
         JSONObject jsonObject = jsonArray.getJSONObject(0);
         JSONObject result = jsonObject.getJSONObject("result");
-        JSONObject pagingIdentifiers = result.getJSONObject("pagingIdentifiers");
-        return pagingIdentifiers;
+        return result.getJSONObject("pagingIdentifiers");
     }
 
     public static int getTotalResult(String druidResult){
@@ -73,11 +72,4 @@ public class QueryToResultUtils {
         return countArray;
     }
 
-    private static String formatDateTime(String dateTime,String granularity){
-        String result  = null;
-        if(StringUtils.equals("day",granularity)){
-            result = dateTime + ":00:00";
-        }
-        return result;
-    }
 }
