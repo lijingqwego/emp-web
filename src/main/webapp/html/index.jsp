@@ -25,7 +25,7 @@
     </div>
     <div class="table_boxgroupTable groupTableEnStyle"></div>
 
-    <div id="chartmain" style="width:600px; height: 400px;"></div>
+    <div id="chartmain" style="width:800px; height: 600px;"></div>
 
     <script type="text/javascript" src="../statis/js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="../statis/js/echarts.min.js"></script>

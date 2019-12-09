@@ -12,6 +12,8 @@ public class QueryParam {
 
     private List<GroupBy> groupByList;
 
+    private String granularity;
+
     private int offset;
 
     private int rows;
@@ -46,6 +48,14 @@ public class QueryParam {
 
     public void setGroupByList(List<GroupBy> groupByList) {
         this.groupByList = groupByList;
+    }
+
+    public String getGranularity() {
+        return granularity;
+    }
+
+    public void setGranularity(String granularity) {
+        this.granularity = granularity;
     }
 
     public int getOffset() {

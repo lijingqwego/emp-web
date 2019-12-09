@@ -1,11 +1,12 @@
 var mysqlQueryParam = {
     "dataSource":"ims_chr",
-    "dimensions":["count","ne_name"],
+    "dimensions":["count","date_time"],
+    "granularity": "hour",
     "baseFilter":{
         "CHR Type":["36","37","38","39","53"],
         "neType":["CSCF","PSBC","MTELAS"],
         "neName":["NJPSBC11BHW","NJMTELAS11BHW","NJCSCF13BHW"],
-        "dateTime":{"startTime":"2019-11-31 00:00:00","endTime":"2019-12-07 23:00:00"}
+        "dateTime":{"startTime":"2019-10-31 00:00:00","endTime":"2019-12-07 23:00:00"}
     },
     "conditionFilter":[
         {
@@ -49,7 +50,7 @@ var mysqlQueryParam = {
     ],
     "groupArray":[
         {
-            "dimension": "ne_type",
+            "dimension": "date_time",
             "direction": "desc"
         }
     ],

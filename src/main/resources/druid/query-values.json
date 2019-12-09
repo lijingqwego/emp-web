@@ -1,6 +1,7 @@
 {
   "dataSource":"IMS_CHR",
   "dimensions":["neName","neType","CHR Type","neId","Callee IMPU"],
+  "granularity": "day",
   "baseFilter":{
     "CHR Type":["36","37","38","39","53"],
     "neType":["CSCF","PSBC"],

@@ -52,6 +52,9 @@ public class QueryToStructUtils {
         JSONArray dimensions = jsonObject.getJSONArray("dimensions");
         List<String> columnList = JSONObject.parseArray(dimensions.toJSONString(), String.class);
         queryParam.setColumnList(columnList);
+        //granularity
+        String granularity = jsonObject.getString("granularity");
+        queryParam.setGranularity(granularity);
         //where
         List<OutWhere> outWhereList = new ArrayList<>();
         JSONObject baseFilter = jsonObject.getJSONObject("baseFilter");

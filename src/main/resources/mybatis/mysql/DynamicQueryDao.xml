@@ -11,7 +11,17 @@
                         COUNT(*) AS count
                     </when >
                     <otherwise>
-                        ${column}
+                        <choose>
+                            <when test=" granularity == 'day' ">
+                                DATE(date_time) AS date
+                            </when>
+                            <when test=" granularity == 'hour' ">
+                                DATE_FORMAT(date_time, '%Y-%m-%d %H:00:00') AS time
+                            </when>
+                            <otherwise>
+                                ${column}
+                            </otherwise>
+                        </choose>
                     </otherwise>
                 </choose>
             </foreach>
@@ -52,7 +62,18 @@
         <if test="groupByList != null and groupByList.size>0">
             GROUP BY
             <foreach collection="groupByList" item="groupBy" separator=",">
-                ${groupBy.column} ${groupBy.sort}
+                <choose>
+                    <when test=" granularity == 'day' ">
+                        date
+                    </when>
+                    <when test=" granularity == 'hour' ">
+                        time
+                    </when>
+                    <otherwise>
+                        ${groupBy.column}
+                    </otherwise>
+                </choose>
+                ${groupBy.sort}
             </foreach>
         </if>
         <if test="rows>0">

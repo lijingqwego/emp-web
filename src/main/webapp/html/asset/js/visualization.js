@@ -51,7 +51,7 @@ function initChart(chart) {
             if (data.code == 0) {
                 //请求成功时执行该函数内容，result即为服务器返回的json对象
                 $.each(data.extend.list, function (index, item) {
-                    nameList.push(item.ne_name);//挨个取出类别并填入类别数组
+                    nameList.push(item.time);//挨个取出类别并填入类别数组
                     countList.push(item.count);
                 });
                 chart.hideLoading(); //隐藏加载动画
