@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +32,23 @@ public class DynamicQueryService implements IDynamicQueryService {
             InsertParam insertParam = new InsertParam();
             insertParam.setTableName(tableName);
             Map<String,String> map = JSONObject.parseObject(valArray[i], Map.class);
+            insertParam.setParams(map);
+            iDynamicQueryDao.insertInfo(insertParam);
+            count++;
+        }
+        return count;
+    }
+
+    @Override
+    public int push(String tableName, List<JSONObject> values) {
+        int count = 0;
+        Map<String, String> param = new HashMap<String, String>();
+        param.put("tableName",tableName);
+        iDynamicQueryDao.deleteInfo(param);
+        for(JSONObject jsonObject : values){
+            InsertParam insertParam = new InsertParam();
+            insertParam.setTableName(tableName);
+            Map<String,String> map = JSONObject.parseObject(jsonObject.toJSONString(), Map.class);
             insertParam.setParams(map);
             iDynamicQueryDao.insertInfo(insertParam);
             count++;

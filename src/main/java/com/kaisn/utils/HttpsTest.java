@@ -14,9 +14,9 @@ public class HttpsTest {
     private static Logger logger = Logger.getLogger(HttpsTest.class);
 
     public static void main(String[] args) {
-        //testPush();
+        testPush();
         //testQuery();
-        testSend();
+//        testSend();
     }
 
     public static void testSend(){
@@ -40,10 +40,10 @@ public class HttpsTest {
     }
 
     public static void testPush(){
-        String url="http://localhost:8080/emp-web/emp/push";
-        File file = new File("/home/lijjing/桌面/ingestion_data.json");
+        String url="http://localhost:8080/emp-web/emp/upload";
+        File file = new File("/home/lijjing/IdeaProjects/emp-web/src/main/resources/template.xml");
         Map<String, String> params =new HashMap<>();
-        params.put("tableName","ims_chr");
+        params.put("tableName","t_city_info");
         String s = HttpUtils.postFile(url, params, file);
         System.out.println(s);
     }

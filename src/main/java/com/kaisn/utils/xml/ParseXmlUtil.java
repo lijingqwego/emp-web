@@ -1,5 +1,8 @@
 package com.kaisn.utils.xml;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.kaisn.pojo.CityInfo;
 import com.kaisn.pojo.Employee;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
@@ -14,8 +17,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 public class ParseXmlUtil {
 
@@ -37,9 +42,9 @@ public class ParseXmlUtil {
     public static void readXML() {
         SAXReader sr = new SAXReader();// 获取读取xml的对象。
         try {
-            Document doc = sr.read("src/main/resources/employee.xml");// 得到xml所在位置。然后开始读取。并将数据放入doc中
+            Document doc = sr.read("src/main/resources/template.xml");// 得到xml所在位置。然后开始读取。并将数据放入doc中
             Element rootElement = doc.getRootElement();// 向外取数据，获取xml的根节点。
-            logger.info("根节点：" + rootElement.getName());
+            System.out.println("根节点：" + rootElement.getName());
             Iterator<Element> it = rootElement.elementIterator();// 从根节点下依次遍历，获取根节点下所有子节点
             while (it.hasNext()) {// 遍历子节点
                 Element next = it.next();
@@ -47,7 +52,7 @@ public class ParseXmlUtil {
                 Iterator<Element> iterator = next.elementIterator();
                 while (iterator.hasNext()) {
                     Element element = iterator.next();
-                    logger.info(element.getName() + "=" + element.getData());
+                    System.out.println(element.getName() + "=" + element.getData());
                 }
             }
         } catch (DocumentException e) {
@@ -148,8 +153,35 @@ public class ParseXmlUtil {
         // 存到文件中结束
     }
 
+    public static List<JSONObject> readXML(String fileName) {
+        List<JSONObject> list = new ArrayList<JSONObject>();
+        try {
+            SAXReader sr = new SAXReader();// 获取读取xml的对象。
+            Document doc = sr.read(fileName);// 得到xml所在位置。然后开始读取。并将数据放入doc中
+            Element rootElement = doc.getRootElement();// 向外取数据，获取xml的根节点。
+            Iterator<Element> it = rootElement.elementIterator();// 从根节点下依次遍历，获取根节点下所有子节点
+            while (it.hasNext()) {// 遍历子节点
+                Element next = it.next();
+                String province = next.attribute("name").getValue();
+                Iterator<Element> iterator = next.elementIterator();
+                while (iterator.hasNext()) {
+                    Element element = iterator.next();
+                    JSONObject cityInfo = new JSONObject();
+                    String city = element.getData().toString();
+                    cityInfo.put("province",province);
+                    cityInfo.put("city",city);
+                    list.add(cityInfo);
+                }
+            }
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public static void main(String args[]) {
-        readXML();
+        List<JSONObject> cityInfos = readXML("src/main/resources/template.xml");
+        System.out.println(JSON.toJSONString(cityInfos));
 //        writeToXML();
     }
 

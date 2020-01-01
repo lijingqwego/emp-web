@@ -1,14 +1,18 @@
 package com.kaisn.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.kaisn.druid.QueryContant;
 import com.kaisn.druid.QueryEntrance;
 import com.kaisn.mail.EMailUtils;
 import com.kaisn.mail.VerifyCodeUtil;
 import com.kaisn.mysql.QueryParam;
 import com.kaisn.mysql.QueryToStructUtils;
+import com.kaisn.pojo.CityInfo;
 import com.kaisn.pojo.Msg;
 import com.kaisn.service.IDynamicQueryService;
+import com.kaisn.service.IEmployeeService;
+import com.kaisn.utils.xml.ParseXmlUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +37,9 @@ public class EmployeeController {
 
     @Autowired
     private IDynamicQueryService iDynamicQueryService;
+
+    @Autowired
+    private IEmployeeService iEmployeeService;
 
     @ResponseBody
     @RequestMapping(value = "/query",method = RequestMethod.POST)
@@ -110,5 +117,23 @@ public class EmployeeController {
             logger.error("邮件发送失败",e);
             return Msg.fail();
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    public Msg upload(HttpServletRequest request, @RequestParam("file") CommonsMultipartFile file){
+        String path="/home/lijjing/"+System.currentTimeMillis()+file.getOriginalFilename();
+        String tableName = request.getParameter("tableName");
+        int count = 0;
+        try {
+            File newFile=new File(path);
+            file.transferTo(newFile);
+            ParseXmlUtil.readXML();
+            List<JSONObject> cityInfoList = ParseXmlUtil.readXML(newFile.getCanonicalPath());
+            count = iDynamicQueryService.push(tableName,cityInfoList);
+        } catch (IOException e) {
+            logger.error("上传文件失败",e);
+        }
+        return Msg.success().add("list",count);
     }
 }

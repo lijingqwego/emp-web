@@ -1,7 +1,17 @@
+var complexDataStructureObject = {
+    "values": {
+        "essence": {
+            "conditionArray": [],
+            "condition": []
+        }
+    }
+};
+
+
 var mysqlQueryParam = {
     "dataSource":"ims_chr",
-    "dimensions":["count","date_time"],
-    "granularity": "day",
+    "dimensions":["count","ne_name"],
+    "granularity": "all",
     "baseFilter":{
         "CHR Type":["36","37","38","39","53"],
         "neType":["CSCF","PSBC","MTELAS"],
@@ -50,7 +60,7 @@ var mysqlQueryParam = {
     ],
     "groupArray":[
         {
-            "dimension": "date_time",
+            "dimension": "ne_name",
             "direction": "desc"
         }
     ],

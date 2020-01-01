@@ -28,3 +28,10 @@ create table if not exists ims_chr(
     split_time varchar(10),
     primary key(ne_id)
 );
+
+create table if not exists t_city_info(
+    id INT UNSIGNED AUTO_INCREMENT,
+    province varchar(20),
+    city varchar(20),
+    primary key(id)
+);

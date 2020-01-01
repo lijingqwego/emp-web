@@ -107,4 +107,13 @@
         </foreach>
     </update>
 
+    <delete id="deleteInfo" parameterType="java.util.Map" >
+        delete from ${tableName}
+        <where>
+            <if test="key != null and key != ''">
+                ${key} = #{value}
+            </if>
+        </where>
+    </delete>
+
 </mapper>

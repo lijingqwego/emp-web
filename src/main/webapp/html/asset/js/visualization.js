@@ -39,11 +39,11 @@ function initChart(chart) {
     });
     chart.showLoading(); //数据加载完之前先显示一段简单的loading动画
     var param = {};
-    param.values = JSON.stringify(druidQueryParam);
+    param.values = JSON.stringify(mysqlQueryParam);
     $.ajax({
         type : "post",
         async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-        url : "/emp-web/emp/count",
+        url : "/emp-web/emp/query",
         data : param,
         dataType : "json",
         success : function(data) {
@@ -51,7 +51,7 @@ function initChart(chart) {
             if (data.code == 0) {
                 //请求成功时执行该函数内容，result即为服务器返回的json对象
                 $.each(data.extend.list, function (index, item) {
-                    nameList.push(item.dateTime);//挨个取出类别并填入类别数组
+                    nameList.push(item.ne_name);//挨个取出类别并填入类别数组
                     countList.push(item.count);
                 });
                 chart.hideLoading(); //隐藏加载动画

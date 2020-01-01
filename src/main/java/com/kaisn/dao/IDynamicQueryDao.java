@@ -13,4 +13,6 @@ public interface IDynamicQueryDao {
     void insertInfo(InsertParam updateParam);
 
     void updateInfoByID(Map<String,String> params);
+
+    void deleteInfo(Map<String,String> params);
 }
